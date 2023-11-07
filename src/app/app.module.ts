@@ -3,14 +3,39 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HomeComponent } from './pages/home/home.component';
+import { UserProfileComponent } from './pages/user-profile/user-profile.component';
+import { MenubarComponent } from './components/menubar/menubar.component';
+import {MaterialModule} from "./material-module";
+import { AuthComponent } from './pages/auth/auth.component';
+import { AppointmentsComponent } from './pages/appointments/appointments.component';
+import { CategoriesComponent } from './components/categories/categories.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { DoctorCardComponent } from './components/doctor-card/doctor-card.component';
+import { DoctorDetailsComponent } from './pages/doctor-details/doctor-details.component';
+import { AppointmentTodayComponent } from './components/appointment-today/appointment-today.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
+    UserProfileComponent,
+    MenubarComponent,
+    AuthComponent,
+    AppointmentsComponent,
+    CategoriesComponent,
+    DoctorCardComponent,
+    DoctorDetailsComponent,
+    AppointmentTodayComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
