@@ -1,0 +1,53 @@
+<mat-toolbar color="primary" class="mat-elevation-z6">
+  <button mat-icon-button (click)="drawer.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span routerLink="">Ang. Health</span>
+  <span class="example-spacer"></span>
+
+  <button [matMenuTriggerFor]="lvl1master" mat-button>Master</button>
+<!--  <button routerLink="profile" mat-button>Profile</button>-->
+<!--  <button routerLink="auth" mat-button>Sign Up</button>-->
+
+  <mat-menu #lvl1master="matMenu">
+    <button [matMenuTriggerFor]="company" mat-menu-item>Company</button>
+    <button [matMenuTriggerFor]="customer" mat-menu-item>Customer</button>
+    <button [matMenuTriggerFor]="product" mat-menu-item>Product</button>
+  </mat-menu>
+
+  <mat-menu #company="matMenu">
+    <button mat-menu-item>Term</button>
+    <button mat-menu-item>Tax</button>
+    <button mat-menu-item>Currency</button>
+  </mat-menu>
+
+  <mat-menu #customer="matMenu">
+    <button mat-menu-item>Customer Type</button>
+    <button mat-menu-item>Tax</button>
+  </mat-menu>
+
+  <mat-menu #product="matMenu">
+    <button mat-menu-item>Category</button>
+    <button mat-menu-item>Variant</button>
+    <button mat-menu-item>UOM</button>
+  </mat-menu>
+</mat-toolbar>
+
+<mat-drawer-container autosize>
+  <mat-drawer #drawer [opened]="false" mode="over">
+    <mat-nav-list>
+      <mat-list-item routerLink=""><button mat-button><mat-icon>home</mat-icon>Home</button></mat-list-item>
+      <mat-list-item routerLink="appointments"><button mat-button><mat-icon>schedule</mat-icon>Appointment Schedule</button></mat-list-item>
+      <mat-list-item routerLink="profile"><button mat-button><mat-icon>person</mat-icon>Profile</button></mat-list-item>
+
+      <mat-list-item><button mat-button><mat-icon>help</mat-icon>Help</button></mat-list-item>
+      <mat-list-item><button mat-button><mat-icon>logout</mat-icon>Logout</button></mat-list-item>
+
+    </mat-nav-list>
+  </mat-drawer>
+  <mat-drawer-content >
+    <div style="min-height: 650px">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

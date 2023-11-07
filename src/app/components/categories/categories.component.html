@@ -1,0 +1,15 @@
+<div>
+  <h1>Category</h1>
+
+  <mat-tab-group mat-align-tabs="start">
+    <mat-tab *ngFor="let category of categories" [label]="category.title"></mat-tab>
+  </mat-tab-group>
+
+  <div matSort style="flex-direction: row; display: flex">
+    <button mat-button><div mat-sort-header="rating"><mat-icon>star</mat-icon>Rating</div></button>
+    <button mat-button><div mat-sort-header="patients"><mat-icon>people</mat-icon>Patients</div></button>
+    <button mat-button><div mat-sort-header="experience"><mat-icon>work</mat-icon>Experience</div></button>
+
+  </div>
+
+</div>

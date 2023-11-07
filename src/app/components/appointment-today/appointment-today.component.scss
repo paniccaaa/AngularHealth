@@ -1,0 +1,18 @@
+.icon {
+  margin-bottom: -5px;
+}
+
+.appointment-card {
+  max-width: 400px;
+
+}
+
+.mat-card-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.mat-card-actions button {
+  flex: 1;
+  margin: 0 4px;
+}
