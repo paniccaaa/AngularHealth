@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppointmentsComponent {
   statuses = ['upcoming', 'complete', 'cancel']
+  doctors = [1, 2, 3, 4, 5, 6, 7, 8]
 }

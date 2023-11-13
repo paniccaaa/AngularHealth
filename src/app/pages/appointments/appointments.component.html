@@ -1,6 +1,11 @@
 <mat-tab-group mat-align-tabs="start">
   <mat-tab label="upcoming">
     <div>Тут ожидающее</div>
+    <div class="doctor-card-container">
+      <div class="doctor-card-column" *ngFor="let doctor of doctors">
+        <app-appointment-today></app-appointment-today>
+      </div>
+    </div>
   </mat-tab>
   <mat-tab label="complete">
     <div>Тут завершенное</div>

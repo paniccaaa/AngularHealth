@@ -20,4 +20,6 @@ export class CategoriesComponent {
   ];
 
   selectedCategoryIndex: number = 0;
+
+  value = 'Dr Dre'
 }

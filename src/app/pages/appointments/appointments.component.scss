@@ -1,0 +1,17 @@
+.doctor-card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 10px;
+
+}
+.doctor-card-column {
+  flex-basis: 25%;
+  padding: 10px;
+  @media screen and (max-width: 1044px) {
+    flex-basis: 50%;
+  }
+  @media screen and (max-width: 633px) {
+    flex-basis: 100%;
+  }
+
+}
