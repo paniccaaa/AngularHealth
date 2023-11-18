@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AuthComponent {
   hide = true;
+  selectedGender = '';
+  genders = ['Male', 'Female', 'Other'];
 }

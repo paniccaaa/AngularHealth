@@ -7,19 +7,19 @@ export interface Category {
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.component.html',
-  styleUrls: ['./categories.component.scss']
+  styleUrls: ['./categories.component.scss'],
 })
 export class CategoriesComponent {
   categories: Category[] = [
-    {title: 'All'},
-    {title: 'Cardio'},
-    {title: 'Dermatology'},
-    {title: 'General'},
-    {title: 'Dental'},
-    {title: 'Gynecology'}
+    { title: 'All' },
+    { title: 'Cardiology' },
+    { title: 'Dermatology' },
+    { title: 'General' },
+    { title: 'Dentalogy' },
+    { title: 'Gynecology' },
   ];
 
   selectedCategoryIndex: number = 0;
 
-  value = 'Dr Dre'
+  value = 'Dr Dre';
 }
