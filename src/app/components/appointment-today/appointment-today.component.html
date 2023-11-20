@@ -10,8 +10,20 @@
     <p><mat-icon class="icon">schedule</mat-icon>10:00 AM</p>
   </mat-card-content>
 
-  <mat-card-actions class="mat-card-actions">
-    <button mat-raised-button color="warn">Cancel</button>
-    <button mat-raised-button color="primary">Completed</button>
+  <mat-card-actions class="mat-card-actions" [ngSwitch]="eventTime">
+    
+    <ng-template ngSwitchCase="Upcoming">
+      <button mat-raised-button color="warn">Cancel</button>
+      <button mat-raised-button color="primary">Complete</button>
+    </ng-template>
+    
+    <ng-template ngSwitchCase="Completed">
+      <button mat-flat-button color="accent" disabled>Completed!</button>
+    </ng-template>
+
+    <ng-template ngSwitchCase="Canceled">
+      <button mat-flat-button disabled>Canceled</button>
+    </ng-template>
+
   </mat-card-actions>
 </mat-card>
