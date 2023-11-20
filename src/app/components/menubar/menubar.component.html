@@ -2,7 +2,7 @@
   <button mat-icon-button (click)="drawer.toggle()">
     <mat-icon>menu</mat-icon>
   </button>
-  <span routerLink="" style="cursor: pointer;">Ang. Health</span>
+  <span routerLink="" style="cursor: pointer;">Angular Health</span>
   <span class="example-spacer"></span>
 
   <button [matMenuTriggerFor]="lvl1master" routerLink="auth" mat-button>Sing Up</button>
@@ -35,15 +35,17 @@
   <mat-drawer #drawer [opened]="false" mode="over">
     <mat-nav-list>
       <mat-list-item routerLink=""><button mat-button><mat-icon>home</mat-icon>Home</button></mat-list-item>
-      <mat-list-item routerLink="appointments"><button mat-button><mat-icon>schedule</mat-icon>Appointment Schedule</button></mat-list-item>
+      <mat-list-item routerLink="appointments-schedule"><button mat-button><mat-icon>schedule</mat-icon>Appointments Schedule</button></mat-list-item>
+      <mat-list-item routerLink="appointments"><button mat-button><mat-icon>view_list</mat-icon>Appointments</button></mat-list-item>
+      <mat-list-item routerLink="new-doctor"><button mat-button><mat-icon>assignment_ind</mat-icon>Add doctor</button></mat-list-item>
       <mat-list-item routerLink="profile"><button mat-button><mat-icon>person</mat-icon>Profile</button></mat-list-item>
 
-      <mat-list-item><button mat-button><mat-icon>help</mat-icon>Help</button></mat-list-item>
+      <!-- <mat-list-item><button mat-button><mat-icon>help</mat-icon>Help</button></mat-list-item> -->
       <mat-list-item><button mat-button><mat-icon>logout</mat-icon>Logout</button></mat-list-item>
 
     </mat-nav-list>
   </mat-drawer>
-  <mat-drawer-content >
+  <mat-drawer-content>
     <div style="min-height: 650px">
       <router-outlet></router-outlet>
     </div>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 export interface Category {
+  id: number;
   title: string;
 }
 
@@ -10,14 +11,14 @@ export interface Category {
   styleUrls: ['./categories.component.scss'],
 })
 export class CategoriesComponent {
-  categories: Category[] = [
-    { title: 'All' },
-    { title: 'Cardiology' },
-    { title: 'Dermatology' },
-    { title: 'General' },
-    { title: 'Dentalogy' },
-    { title: 'Gynecology' },
+  mycat: Category[] = [
+    { id: 1, title: 'Cardiology' },
+    { id: 2, title: 'Dermatology' },
+    { id: 3, title: 'General' },
+    { id: 4, title: 'Dentalogy' },
+    { id: 5, title: 'Gynecology' },
   ];
+  categories: Category[] = [{ id: 0, title: 'All' }, ...this.mycat];
 
   selectedCategoryIndex: number = 0;
 

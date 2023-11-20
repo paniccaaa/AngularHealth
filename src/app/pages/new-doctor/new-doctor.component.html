@@ -1,0 +1,26 @@
+<div class="new-doctor-container">
+  <h1>Personal Details</h1>
+  
+  <h1>Professional Details</h1>
+
+  <mat-form-field>
+    <mat-label>Specializations</mat-label>
+    <mat-select [(ngModel)]="selectedSpecialization">
+      @for (specialization of specializations; track specialization) {
+        <mat-option [value]="specialization.title">{{specialization.title}}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+  
+  <!-- <mat-form-field>
+    <mat-label>Experience(full years)</mat-label>
+
+  </mat-form-field> -->
+
+</div>
+
+
+
+
+
+  

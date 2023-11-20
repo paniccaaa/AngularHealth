@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-appointments',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './appointments.component.html',
-  styleUrls: ['./appointments.component.scss']
+  styleUrl: './appointments.component.scss'
 })
 export class AppointmentsComponent {
-  statuses = ['upcoming', 'complete', 'cancel']
-  doctors = [1, 2, 3, 4, 5, 6, 7, 8]
+
 }
