@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { CategoriesComponent } from 'src/app/components/categories/categories.component';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-new-doctor',
@@ -16,4 +15,18 @@ export class NewDoctorComponent {
     { id: 5, title: 'Gynecology' },
   ];
   selectedSpecialization = '';
+
+  timings = new FormControl('');
+  timingsList: string[] = [
+    '9:00 AM',
+    '10:00 AM',
+    '11:00 AM',
+    '12:00 PM',
+    '1:00 PM',
+    '2:00 PM',
+    '3:00 PM',
+    '4:00 PM',
+    '5:00 PM',
+    '6:00 PM',
+  ];
 }

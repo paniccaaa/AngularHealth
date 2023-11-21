@@ -15,11 +15,9 @@
       matInput>
   </mat-form-field>
 
-  <mat-form-field>
+  <mat-form-field class="example-full-width">
     <mat-label>Description</mat-label>
-    <input
-      type="text"
-      matInput>
+    <textarea matInput placeholder="I'm a gynecology specialist..."></textarea>
   </mat-form-field>
 
   <h1>Professional Details</h1>
@@ -47,10 +45,14 @@
       matInput>
   </mat-form-field>
 
-  <!-- <mat-form-field>
-    <mat-label>Experience(full years)</mat-label>
-
-  </mat-form-field> -->
+  <mat-form-field>
+    <mat-label>Timings work</mat-label>
+    <mat-select [formControl]="timings" multiple>
+      @for (timing of timingsList; track timing) {
+        <mat-option [value]="timings">{{timing}}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
   <button mat-raised-button color="primary">Add a new doctor</button>
 </div>
 
