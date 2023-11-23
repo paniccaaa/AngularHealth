@@ -8,6 +8,7 @@ import { DoctorDetailsComponent } from './pages/doctor-details/doctor-details.co
 import { UsersReviewsComponent } from './pages/users-reviews/users-reviews.component';
 import { NewDoctorComponent } from './pages/new-doctor/new-doctor.component';
 import { AppointmentsComponent } from './pages/appointments/appointments.component';
+import { DoctorsListComponent } from './pages/doctors-list/doctors-list.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -18,7 +19,9 @@ const routes: Routes = [
   { path: 'doctor/id/rewievs', component: UsersReviewsComponent },
   { path: 'new-doctor', component: NewDoctorComponent },
   { path: 'appointments', component: AppointmentsComponent },
+  { path: 'doctors-list', component: DoctorsListComponent },
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -15,6 +15,7 @@ import { DoctorCardComponent } from './components/doctor-card/doctor-card.compon
 import { DoctorDetailsComponent } from './pages/doctor-details/doctor-details.component';
 import { AppointmentTodayComponent } from './components/appointment-today/appointment-today.component';
 import { NewDoctorComponent } from './pages/new-doctor/new-doctor.component';
+import { DoctorsListComponent } from './pages/doctors-list/doctors-list.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { NewDoctorComponent } from './pages/new-doctor/new-doctor.component';
     DoctorDetailsComponent,
     AppointmentTodayComponent,
     NewDoctorComponent,
+    DoctorsListComponent,
   ],
   imports: [
     BrowserModule,
