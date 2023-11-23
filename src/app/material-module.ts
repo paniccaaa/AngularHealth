@@ -16,6 +16,7 @@ import {MatSortModule} from "@angular/material/sort";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   exports: [
@@ -37,6 +38,7 @@ import {MatNativeDateModule} from "@angular/material/core";
     MatDatepickerModule,
     MatInputModule,
     MatNativeDateModule,
+    MatTableModule,
   ],
 })
 export class MaterialModule {}
