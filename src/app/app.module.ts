@@ -14,8 +14,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DoctorCardComponent } from './components/doctor-card/doctor-card.component';
 import { DoctorDetailsComponent } from './pages/doctor-details/doctor-details.component';
 import { AppointmentTodayComponent } from './components/appointment-today/appointment-today.component';
-import { NewDoctorComponent } from './pages/new-doctor/new-doctor.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { DoctorsListComponent } from './pages/doctors-list/doctors-list.component';
+import { AppointmentsComponent } from './pages/appointments/appointments.component';
 
 @NgModule({
   declarations: [
@@ -29,8 +30,9 @@ import { DoctorsListComponent } from './pages/doctors-list/doctors-list.componen
     DoctorCardComponent,
     DoctorDetailsComponent,
     AppointmentTodayComponent,
-    NewDoctorComponent,
+    DashboardComponent,
     DoctorsListComponent,
+    AppointmentsComponent,
   ],
   imports: [
     BrowserModule,

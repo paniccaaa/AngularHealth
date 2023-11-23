@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
-  selector: 'app-new-doctor',
-  templateUrl: './new-doctor.component.html',
-  styleUrl: './new-doctor.component.scss',
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrl: './dashboard.component.scss',
 })
-export class NewDoctorComponent {
+export class DashboardComponent {
   specializations = [
     { id: 1, title: 'Cardiology' },
     { id: 2, title: 'Dermatology' },

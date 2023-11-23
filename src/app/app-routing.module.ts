@@ -6,7 +6,7 @@ import {AuthComponent} from "./pages/auth/auth.component";
 import { AppointmentsScheduleComponent } from './pages/appointments-schedule/appointments-schedule.component';
 import { DoctorDetailsComponent } from './pages/doctor-details/doctor-details.component';
 import { UsersReviewsComponent } from './pages/users-reviews/users-reviews.component';
-import { NewDoctorComponent } from './pages/new-doctor/new-doctor.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AppointmentsComponent } from './pages/appointments/appointments.component';
 import { DoctorsListComponent } from './pages/doctors-list/doctors-list.component';
 
@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'appointments-schedule', component: AppointmentsScheduleComponent },
   { path: 'doctor/id', component: DoctorDetailsComponent },
   { path: 'doctor/id/rewievs', component: UsersReviewsComponent },
-  { path: 'new-doctor', component: NewDoctorComponent },
+  { path: 'dashboard', component: DashboardComponent },
   { path: 'appointments', component: AppointmentsComponent },
   { path: 'doctors-list', component: DoctorsListComponent },
 ];
