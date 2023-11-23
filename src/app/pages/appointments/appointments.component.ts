@@ -1,23 +1,47 @@
 import { Component } from '@angular/core';
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
+export interface Appointment {
+  id: number;
+  user_id: number;
+  user_name: string;
+  doctor_id: number;
+  doctor_name: string;
+  date: string;
+  time: string;
+  status: string;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-  { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-  { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-  { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-  { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-  { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-  { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-  { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-  { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-  { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
+const ELEMENT_DATA: Appointment[] = [
+  {
+    id: 1,
+    user_id: 1,
+    user_name: 'Amanda Wang',
+    doctor_id: 1,
+    doctor_name: 'Dr. Wendy Yii',
+    date: '2021-07-13',
+    time: '10:00 AM',
+    status: 'canceled',
+  },
+  {
+    id: 2,
+    user_id: 1,
+    user_name: 'Amanda Wang',
+    doctor_id: 1,
+    doctor_name: 'Dr. Wendy Yii',
+    date: '2021-09-15',
+    time: '9:30 AM',
+    status: 'upcoming',
+  },
+  {
+    id: 3,
+    user_id: 1,
+    user_name: 'Amanda Wang',
+    doctor_id: 1,
+    doctor_name: 'Dr. Wendy Yii',
+    date: '2021-08-14',
+    time: '10:30 AM',
+    status: 'completed',
+  },
 ];
 
 @Component({
@@ -26,6 +50,13 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrl: './appointments.component.scss',
 })
 export class AppointmentsComponent {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  displayedColumns: string[] = [
+    'id',
+    'user_name',
+    'doctor_name',
+    'date',
+    'time',
+    'status',
+  ];
   dataSource = ELEMENT_DATA;
 }
