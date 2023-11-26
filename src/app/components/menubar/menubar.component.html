@@ -5,30 +5,8 @@
   <span routerLink="" style="cursor: pointer;">Angular Health</span>
   <span class="example-spacer"></span>
 
-  <button [matMenuTriggerFor]="lvl1master" routerLink="auth" mat-button>Sing Up</button>
+  <button routerLink="auth" mat-button>Sing Up</button>
 
-  <mat-menu #lvl1master="matMenu">
-    <button [matMenuTriggerFor]="company" mat-menu-item>Company</button>
-    <button [matMenuTriggerFor]="customer" mat-menu-item>Customer</button>
-    <button [matMenuTriggerFor]="product" mat-menu-item>Product</button>
-  </mat-menu>
-
-  <mat-menu #company="matMenu">
-    <button mat-menu-item>Term</button>
-    <button mat-menu-item>Tax</button>
-    <button mat-menu-item>Currency</button>
-  </mat-menu>
-
-  <mat-menu #customer="matMenu">
-    <button mat-menu-item>Customer Type</button>
-    <button mat-menu-item>Tax</button>
-  </mat-menu>
-
-  <mat-menu #product="matMenu">
-    <button mat-menu-item>Category</button>
-    <button mat-menu-item>Variant</button>
-    <button mat-menu-item>UOM</button>
-  </mat-menu>
 </mat-toolbar>
 
 <mat-drawer-container autosize>

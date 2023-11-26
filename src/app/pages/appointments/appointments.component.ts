@@ -17,7 +17,7 @@ const ELEMENT_DATA: Appointment[] = [
     user_id: 1,
     user_name: 'Amanda Wang',
     doctor_id: 1,
-    doctor_name: 'Dr. Wendy Yii',
+    doctor_name: 'Wendy Yii',
     date: '2021-07-13',
     time: '10:00 AM',
     status: 'canceled',
@@ -25,9 +25,9 @@ const ELEMENT_DATA: Appointment[] = [
   {
     id: 2,
     user_id: 1,
-    user_name: 'Amanda Wang',
+    user_name: 'Amanda Wan',
     doctor_id: 1,
-    doctor_name: 'Dr. Wendy Yii',
+    doctor_name: 'Wendy Yii',
     date: '2021-09-15',
     time: '9:30 AM',
     status: 'upcoming',
@@ -35,9 +35,9 @@ const ELEMENT_DATA: Appointment[] = [
   {
     id: 3,
     user_id: 1,
-    user_name: 'Amanda Wang',
+    user_name: 'Amanda Wa',
     doctor_id: 1,
-    doctor_name: 'Dr. Wendy Yii',
+    doctor_name: 'Wendy Yii',
     date: '2021-08-14',
     time: '10:30 AM',
     status: 'completed',
@@ -59,4 +59,8 @@ export class AppointmentsComponent {
     'status',
   ];
   dataSource = ELEMENT_DATA;
+  onClick(id: any) {
+    alert(ELEMENT_DATA[id - 1].user_name);
+    console.log('click');
+  }
 }

@@ -9,7 +9,7 @@
   <!-- User Name Column -->
   <ng-container matColumnDef="user_name">
     <th mat-header-cell *matHeaderCellDef> User Name </th>
-    <td mat-cell *matCellDef="let appointment"> {{appointment.user_name}} </td>
+    <td (click)="onClick(appointment.id)" style="cursor: pointer" mat-cell *matCellDef="let appointment" > {{appointment.user_name}} </td>
   </ng-container>
 
   <!-- Doctor Name Column -->
