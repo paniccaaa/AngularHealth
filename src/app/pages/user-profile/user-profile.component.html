@@ -1,1 +1,42 @@
-<p>user-profile works!</p>
+<div class="user-profile-container">
+  <div class="edit-user-container">
+    <h1>Personal Info</h1>
+
+    <mat-form-field>
+      <mat-label>Full name</mat-label>
+      <input
+        type="text"
+        matInput>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input
+        placeholder="example@gmail.com"
+        type="text"
+        matInput>
+    </mat-form-field>
+    
+    
+    <mat-form-field>
+      <mat-label>Age(full year)</mat-label>
+      <input
+        type="number"
+        matInput>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Gender</mat-label>
+      <mat-select [(ngModel)]="selectedGender" name="food">
+        @for (gender of genders; track gender) {
+          <mat-option [value]="gender">{{gender}}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+  </div>
+  <div class="buttons-container">  
+    <button mat-raised-button color="primary">Edit personal info</button>
+
+  </div>
+</div>
