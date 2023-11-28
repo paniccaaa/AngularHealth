@@ -1,15 +1,15 @@
 <mat-card class="doctor-card">
   <mat-card-header>
     <mat-card-title-group>
-      <mat-card-title>Dr. Wendy Yii</mat-card-title>
-      <mat-card-subtitle>Dermatology</mat-card-subtitle>
-      <img mat-card-md-image src="https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/848.jpg" >
+      <mat-card-title>{{doctorInfo?.name}}</mat-card-title>
+      <mat-card-subtitle>{{doctorInfo?.speciality}}</mat-card-subtitle>
+      <img mat-card-md-image [src]="doctorInfo?.avatar" >
     </mat-card-title-group>
   </mat-card-header>
   <mat-card-footer>
     <div style="flex-direction: row; display: flex; justify-content: center">
       <button mat-raised-button color="primary" class="button" routerLink="doctor/id/rewievs">Feedback</button>
-        <button mat-raised-button color="primary" class="button" routerLink="doctor/id">Appointment</button>
+        <button mat-raised-button color="primary" class="button" [routerLink]="['/doctor', doctorInfo?.id]">Appointment</button>
     </div>
     
     <!-- <p><mat-icon class="star">star</mat-icon>  4.0   Reviews (1)</p>

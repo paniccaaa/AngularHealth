@@ -3,7 +3,7 @@
   <app-categories></app-categories>
   <div class="doctor-card-container">
     <div class="doctor-card-column" *ngFor="let doctor of doctors">
-      <app-doctor-card></app-doctor-card>
+      <app-doctor-card [doctorInfo]="doctor"></app-doctor-card>
     </div>
   </div>
 

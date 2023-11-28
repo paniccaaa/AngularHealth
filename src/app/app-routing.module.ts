@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'profile', component: UserProfileComponent },
   { path: 'auth', component: AuthComponent },
   { path: 'appointments-schedule', component: AppointmentsScheduleComponent },
-  { path: 'doctor/id', component: DoctorDetailsComponent },
+  { path: 'doctor/:id', component: DoctorDetailsComponent },
   { path: 'doctor/id/rewievs', component: UsersReviewsComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'appointments', component: AppointmentsComponent },

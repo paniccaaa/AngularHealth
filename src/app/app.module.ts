@@ -17,6 +17,8 @@ import { AppointmentTodayComponent } from './components/appointment-today/appoin
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { DoctorsListComponent } from './pages/doctors-list/doctors-list.component';
 import { AppointmentsComponent } from './pages/appointments/appointments.component';
+import { HttpClientModule } from '@angular/common/http';
+import { DoctorsService } from './services/doctors/doctors.service';
 
 @NgModule({
   declarations: [
@@ -41,8 +43,9 @@ import { AppointmentsComponent } from './pages/appointments/appointments.compone
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [DoctorsService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
