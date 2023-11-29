@@ -19,6 +19,7 @@ import { DoctorsListComponent } from './pages/doctors-list/doctors-list.componen
 import { AppointmentsComponent } from './pages/appointments/appointments.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DoctorsService } from './services/doctors/doctors.service';
+import { CategoryService } from './services/category/category.service';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,7 @@ import { DoctorsService } from './services/doctors/doctors.service';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [DoctorsService],
+  providers: [DoctorsService, CategoryService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -7,21 +7,35 @@
         type="text"
         aria-label="Number"
         matInput
-        [(ngModel)]="value">
-      <button matSuffix mat-icon-button aria-label="Clear" *ngIf="value" (click)="value=''">
+        placeholder="Dr. Dre"
+        [(ngModel)]="doctorValue"
+        (ngModelChange)="onDoctorInputChanged()">
+      <button matSuffix mat-icon-button aria-label="Clear" *ngIf="doctorValue" (click)="doctorValue=''">
         <mat-icon>close</mat-icon>
       </button>
     </mat-form-field>
   </div>
 
-  <div matSort style="flex-direction: row; display: flex; justify-content: center">
+  <div matSort (matSortChange)="setSortState($event)" style="flex-direction: row; display: flex; justify-content: center">
     <!-- <button mat-button><div mat-sort-header="rating"><mat-icon>star</mat-icon>Rating</div></button> -->
-    <button mat-button><div mat-sort-header="patients"><mat-icon>people</mat-icon>Patients</div></button>
-    <button mat-button><div mat-sort-header="experience"><mat-icon>work</mat-icon>Experience</div></button>
+    <button mat-button>
+      <div mat-sort-header="patients"><mat-icon>people</mat-icon>Patients</div>
+    </button>
+    <button mat-button>
+      <div mat-sort-header="experience"><mat-icon>work</mat-icon>Experience</div>
+    </button>
   </div>
 
-  <mat-tab-group mat-align-tabs="start">
-    <mat-tab *ngFor="let category of categories" [label]="category.title"></mat-tab>
+  <mat-tab-group mat-align-tabs="start" [(selectedIndex)]="selectedCategoryIndex">
+    <mat-tab 
+    *ngFor="let category of categories"
+     [label]="category.title">
+    </mat-tab>
   </mat-tab-group>
 
+  {{selectedCategoryIndex}}
+  {{doctorValue}}
+  {{sortState.active}}
+  {{sortState.direction}}
+  {{selectedCategoryValue}}
 </div>

@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Sort } from '@angular/material/sort';
+import { CategoryService } from 'src/app/services/category/category.service';
 
 export interface Category {
   id: number;
@@ -10,17 +12,59 @@ export interface Category {
   templateUrl: './categories.component.html',
   styleUrls: ['./categories.component.scss'],
 })
-export class CategoriesComponent {
-  mycat: Category[] = [
-    { id: 1, title: 'Cardiology' },
-    { id: 2, title: 'Dermatology' },
-    { id: 3, title: 'General' },
-    { id: 4, title: 'Dentalogy' },
-    { id: 5, title: 'Gynecology' },
-  ];
-  categories: Category[] = [{ id: 0, title: 'All' }, ...this.mycat];
+export class CategoriesComponent implements OnInit {
+  categories: Category[] = [];
+  private _selectedCategoryIndex: number = 0;
+  selectedCategoryValue?: string = '';
+  sortState = { direction: '', active: '' };
 
-  selectedCategoryIndex: number = 0;
+  doctorValue = '';
 
-  value = 'Dr Dre';
+  constructor(private categoryService: CategoryService) {}
+
+  ngOnInit() {
+    this.categoryService.getAllCategories().subscribe({
+      next: (res) => (this.categories = [{ id: 0, title: 'All' }, ...res]),
+      error: (e) => console.log('При получении категорий произошла ошибка:', e),
+    });
+  }
+
+  setSortState(sort: Sort) {
+    if (!sort.active || sort.direction === '') {
+      this.sortState.direction = '';
+      this.sortState.active = '';
+      return;
+    }
+
+    this.sortState.direction = sort.direction;
+    this.sortState.active = sort.active;
+
+    this.categoryService.setSelectedParams(
+      this.sortState,
+      this.selectedCategoryValue,
+      this.doctorValue
+    );
+  }
+
+  onDoctorInputChanged() {
+    this.categoryService.setSelectedParams(
+      this.sortState,
+      this.selectedCategoryValue,
+      this.doctorValue
+    );
+  }
+
+  get selectedCategoryIndex(): number {
+    return this._selectedCategoryIndex;
+  }
+
+  set selectedCategoryIndex(value: number) {
+    this._selectedCategoryIndex = value;
+    this.selectedCategoryValue = this.categories[value].title;
+    this.categoryService.setSelectedParams(
+      this.sortState,
+      this.selectedCategoryValue,
+      this.doctorValue
+    );
+  }
 }

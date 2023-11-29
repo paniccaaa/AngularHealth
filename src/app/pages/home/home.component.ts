@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CategoryService } from 'src/app/services/category/category.service';
 import {
   Doctor,
   DoctorsService,
@@ -11,13 +12,33 @@ import {
 })
 export class HomeComponent implements OnInit {
   doctors: Doctor[] = [];
-  value = 'Dr Dre';
-  constructor(private doctorsService: DoctorsService) {}
+  constructor(
+    private doctorsService: DoctorsService,
+    private categoryService: CategoryService
+  ) {}
 
   ngOnInit() {
-    this.doctorsService.getAllDoctors().subscribe({
-      next: (res) => (this.doctors = res),
-      error: (e) => console.log('При получении докторов произошла ошибка:', e),
-    });
+    this.loadDoctors();
+  }
+  loadDoctors() {
+    // Получаем выбранные параметры из сервиса категорий
+    const { sortState, selectedCategory, doctorValue } = this.categoryService;
+
+    // Используем выбранные параметры для загрузки докторов с учетом фильтрации и сортировки
+    this.doctorsService
+      .getDoctorsByFilter(
+        selectedCategory || 'All',
+        doctorValue,
+        sortState.direction,
+        sortState.active
+      )
+      .subscribe((doctors) => {
+        this.doctors = doctors;
+      });
+  }
+  click() {
+    console.log(this.categoryService.doctorValue);
+    console.log(this.categoryService.selectedCategory);
+    console.log(this.categoryService.sortState);
   }
 }
