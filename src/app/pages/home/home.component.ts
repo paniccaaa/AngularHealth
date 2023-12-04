@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { debounceTime } from 'rxjs';
 import { CategoryService } from 'src/app/services/category/category.service';
 import {
   Doctor,
@@ -19,12 +20,16 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.loadDoctors();
+    this.categoryService
+      .onFilterChange()
+      .pipe(debounceTime(1500))
+      .subscribe(() => {
+        this.loadDoctors();
+      });
   }
-  loadDoctors() {
-    // Получаем выбранные параметры из сервиса категорий
-    const { sortState, selectedCategory, doctorValue } = this.categoryService;
 
-    // Используем выбранные параметры для загрузки докторов с учетом фильтрации и сортировки
+  loadDoctors() {
+    const { sortState, selectedCategory, doctorValue } = this.categoryService;
     this.doctorsService
       .getDoctorsByFilter(
         selectedCategory || 'All',
@@ -36,9 +41,10 @@ export class HomeComponent implements OnInit {
         this.doctors = doctors;
       });
   }
-  click() {
-    console.log(this.categoryService.doctorValue);
-    console.log(this.categoryService.selectedCategory);
-    console.log(this.categoryService.sortState);
-  }
+
+  // click() {
+  //   console.log(this.categoryService.doctorValue);
+  //   console.log(this.categoryService.selectedCategory);
+  //   console.log(this.categoryService.sortState);
+  // }
 }

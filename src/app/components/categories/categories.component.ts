@@ -44,6 +44,8 @@ export class CategoriesComponent implements OnInit {
       this.selectedCategoryValue,
       this.doctorValue
     );
+
+    this.categoryService.notifyFilterChange();
   }
 
   onDoctorInputChanged() {
@@ -52,6 +54,8 @@ export class CategoriesComponent implements OnInit {
       this.selectedCategoryValue,
       this.doctorValue
     );
+
+    this.categoryService.notifyFilterChange();
   }
 
   get selectedCategoryIndex(): number {
@@ -59,12 +63,16 @@ export class CategoriesComponent implements OnInit {
   }
 
   set selectedCategoryIndex(value: number) {
+    
     this._selectedCategoryIndex = value;
     this.selectedCategoryValue = this.categories[value].title;
+    
     this.categoryService.setSelectedParams(
       this.sortState,
       this.selectedCategoryValue,
       this.doctorValue
     );
+
+    this.categoryService.notifyFilterChange();
   }
 }
