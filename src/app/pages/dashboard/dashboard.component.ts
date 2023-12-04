@@ -26,20 +26,7 @@ export class DashboardComponent implements OnInit {
 
   timings = new FormControl('');
 
-  timingsList: string[] = [
-    '8:00 AM',
-    '9:00 AM',
-    '10:00 AM',
-    '11:00 AM',
-    '12:00 AM',
-    '1:00 PM',
-    '2:00 PM',
-    '3:00 PM',
-    '4:00 PM',
-    '5:00 PM',
-    '6:00 PM',
-    '7:00 PM',
-  ];
+  timingsList!: string[];
 
   displayedColumns: string[] = [
     'id',
@@ -48,8 +35,6 @@ export class DashboardComponent implements OnInit {
     'patients',
     'speciality',
   ];
-
-  //dataSource = ELEMENT_DATA;
 
   constructor(
     private categoryService: CategoryService,
@@ -65,10 +50,20 @@ export class DashboardComponent implements OnInit {
       .subscribe((categories) => (this.categories = categories));
   }
 
-  selectDoctorEditorTab(id: string) {
-    this.tabGroup.selectedIndex = 1; // Индекс таба с label "Doctor Editor" (начиная с 0)
-    this.doctorsService.getDoctorById(id).subscribe((doctor) => {
+  selectDoctorEditorTab(id: number) {
+    console.log('Selecting doctor with ID:', id);
+    this.tabGroup.selectedIndex = 1;
+
+    this.doctorsService.getDoctorById(id.toString()).subscribe((doctor) => {
       this.selectedDoctor = doctor;
     });
+
+    if (this.selectedDoctor) {
+      console.log(this.selectedDoctor);
+    } else {
+      console.log('pysto');
+    }
+
+    //this.timingsList = this.selectedDoctor.timingsList;
   }
 }

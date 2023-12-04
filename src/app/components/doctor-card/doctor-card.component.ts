@@ -9,7 +9,9 @@ import { Doctor } from 'src/app/services/doctors/doctors.service';
 })
 export class DoctorCardComponent {
   @Input({ required: true }) doctorInfo?: Doctor;
+
   constructor(private router: Router) {}
+
   navigateToDetails() {
     this.router.navigate([`doctor/${this.doctorInfo?.id}`]);
   }
