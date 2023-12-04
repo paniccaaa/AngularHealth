@@ -24,7 +24,7 @@ export class DashboardComponent implements OnInit {
 
   selectedCategory = '';
 
-  timings = new FormControl('');
+  timings = new FormControl();
 
   timingsList!: string[];
 
@@ -48,22 +48,20 @@ export class DashboardComponent implements OnInit {
     this.categoryService
       .getAllCategories()
       .subscribe((categories) => (this.categories = categories));
+    this.doctorsService.getDoctorById('1').subscribe((doctor) => {
+      this.selectedDoctor = doctor;
+    });
   }
 
   selectDoctorEditorTab(id: number) {
     console.log('Selecting doctor with ID:', id);
+
     this.tabGroup.selectedIndex = 1;
 
     this.doctorsService.getDoctorById(id.toString()).subscribe((doctor) => {
       this.selectedDoctor = doctor;
+      this.timingsList = doctor.timingsList;
+      this.timings = new FormControl(this.timingsList); //тут не хочет заполняться форма
     });
-
-    if (this.selectedDoctor) {
-      console.log(this.selectedDoctor);
-    } else {
-      console.log('pysto');
-    }
-
-    //this.timingsList = this.selectedDoctor.timingsList;
   }
 }
