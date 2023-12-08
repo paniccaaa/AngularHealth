@@ -13,16 +13,20 @@ export interface Category {
   styleUrls: ['./categories.component.scss'],
 })
 export class CategoriesComponent implements OnInit {
-  categories: Category[] = [];
   private _selectedCategoryIndex: number = 0;
+  categories: Category[] = [];
   selectedCategoryValue?: string = '';
-  sortState = { direction: '', active: '' };
 
+  sortState = { direction: '', active: '' };
   doctorValue = '';
 
   constructor(private categoryService: CategoryService) {}
 
   ngOnInit() {
+    this.loadCategories();
+  }
+
+  loadCategories() {
     this.categoryService.getAllCategories().subscribe({
       next: (res) => (this.categories = [{ id: 0, title: 'All' }, ...res]),
       error: (e) => console.log('При получении категорий произошла ошибка:', e),
@@ -38,7 +42,7 @@ export class CategoriesComponent implements OnInit {
 
     this.sortState.direction = sort.direction;
     this.sortState.active = sort.active;
-
+    console.log('ЭТО КОМПОНЕНТ КАТЕГОРИЙ SORT STATE:', this.sortState);
     this.categoryService.setSelectedParams(
       this.sortState,
       this.selectedCategoryValue,
@@ -63,10 +67,9 @@ export class CategoriesComponent implements OnInit {
   }
 
   set selectedCategoryIndex(value: number) {
-    
     this._selectedCategoryIndex = value;
     this.selectedCategoryValue = this.categories[value].title;
-    
+
     this.categoryService.setSelectedParams(
       this.sortState,
       this.selectedCategoryValue,

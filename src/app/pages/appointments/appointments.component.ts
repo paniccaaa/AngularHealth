@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AppointmentsService } from 'src/app/services/appointments/appointments.service';
 
 export interface Appointment {
   id: number;
@@ -11,45 +12,12 @@ export interface Appointment {
   status: string;
 }
 
-const ELEMENT_DATA: Appointment[] = [
-  {
-    id: 1,
-    user_id: 1,
-    user_name: 'Amanda Wang',
-    doctor_id: 1,
-    doctor_name: 'Wendy Yii',
-    date: '2021-07-13',
-    time: '10:00 AM',
-    status: 'canceled',
-  },
-  {
-    id: 2,
-    user_id: 1,
-    user_name: 'Amanda Wan',
-    doctor_id: 1,
-    doctor_name: 'Wendy Yii',
-    date: '2021-09-15',
-    time: '9:30 AM',
-    status: 'upcoming',
-  },
-  {
-    id: 3,
-    user_id: 1,
-    user_name: 'Amanda Wa',
-    doctor_id: 1,
-    doctor_name: 'Wendy Yii',
-    date: '2021-08-14',
-    time: '10:30 AM',
-    status: 'completed',
-  },
-];
-
 @Component({
   selector: 'app-appointments',
   templateUrl: './appointments.component.html',
   styleUrl: './appointments.component.scss',
 })
-export class AppointmentsComponent {
+export class AppointmentsComponent implements OnInit {
   displayedColumns: string[] = [
     'id',
     'user_name',
@@ -58,9 +26,23 @@ export class AppointmentsComponent {
     'time',
     'status',
   ];
-  dataSource = ELEMENT_DATA;
+
+  appointments: Appointment[] = [];
+
+  constructor(private appointmentsService: AppointmentsService) {}
+
+  ngOnInit() {
+    this.loadAppointments();
+  }
+
+  loadAppointments() {
+    this.appointmentsService.getAllAppointments().subscribe({
+      next: (appointments) => (this.appointments = appointments),
+      error: (e) => console.log('При получении встреч произошла ошибка:', e),
+    });
+  }
+
   onClick(id: any) {
-    alert(ELEMENT_DATA[id - 1].user_name);
-    console.log('click');
+    alert(this.appointments[id - 1].user_name);
   }
 }

@@ -17,18 +17,16 @@ export interface Doctor {
   providedIn: 'root',
 })
 export class DoctorsService {
+  private baseUrl = `https://808ad2a997f895b8.mokky.dev/doctors`;
+
   constructor(private http: HttpClient) {}
 
   getAllDoctors() {
-    return this.http.get<Doctor[]>(
-      `https://808ad2a997f895b8.mokky.dev/doctors`
-    );
+    return this.http.get<Doctor[]>(this.baseUrl);
   }
 
   getDoctorById(id: string) {
-    return this.http.get<Doctor>(
-      `https://808ad2a997f895b8.mokky.dev/doctors/` + id
-    );
+    return this.http.get<Doctor>(`${this.baseUrl}/${id}`);
   }
 
   getDoctorsByFilter(
@@ -37,8 +35,6 @@ export class DoctorsService {
     mark: string,
     sortItem: string
   ) {
-    const baseUrl = 'https://808ad2a997f895b8.mokky.dev/doctors';
-
     const specialityParam =
       speciality === 'All' ? '' : `speciality=${speciality}`;
 
@@ -52,7 +48,7 @@ export class DoctorsService {
       .filter((param) => param !== '')
       .join('&');
 
-    const url = `${baseUrl}?${queryParams}`;
+    const url = `${this.baseUrl}?${queryParams}`;
 
     return this.http.get<Doctor[]>(url);
   }

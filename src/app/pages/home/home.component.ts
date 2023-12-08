@@ -13,6 +13,7 @@ import {
 })
 export class HomeComponent implements OnInit {
   doctors: Doctor[] = [];
+
   constructor(
     private doctorsService: DoctorsService,
     private categoryService: CategoryService
@@ -21,7 +22,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.categoryService
       .onFilterChange()
-      .pipe(debounceTime(1500))
+      .pipe(debounceTime(1100))
       .subscribe(() => {
         this.loadDoctors();
       });
