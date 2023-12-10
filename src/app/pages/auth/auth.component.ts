@@ -1,6 +1,12 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/services/auth/auth.service';
+import { Router } from '@angular/router';
+import {
+  AuthService,
+  Credentials,
+  User,
+} from 'src/app/services/auth/auth.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-auth',
@@ -14,7 +20,12 @@ export class AuthComponent {
   signUpForm: FormGroup;
   signInForm: FormGroup;
 
-  constructor(private authService: AuthService, private fb: FormBuilder) {
+  constructor(
+    private authService: AuthService,
+    private userService: UserService,
+    private router: Router,
+    private fb: FormBuilder
+  ) {
     this.signUpForm = this.fb.group({
       fullName: ['', Validators.required],
       email: ['', Validators.required],
@@ -30,36 +41,38 @@ export class AuthComponent {
   }
 
   register(): void {
-    const user = this.signUpForm.value;
+    const user: User = this.signUpForm.value;
     this.authService.register(user).subscribe({
-      next: (response) => {
-        // Handle successful registration
+      next: (response: User) => {
         this.authService.saveToken(response.token);
+        this.userService.user = response;
         console.log(response);
       },
       error: (error) => {
-        // Handle registration error
         console.log('произошла ошибка при регистрации', error);
       },
     });
+    this.userService.userIsAuthenticated = true;
+    this.router.navigate(['']);
   }
 
   login(): void {
-    const credentials = {
+    const credentials: Credentials = {
       email: this.signInForm.value.email,
       password: this.signInForm.value.password,
     };
 
     this.authService.login(credentials).subscribe({
       next: (response) => {
-        // Handle successful login
         this.authService.saveToken(response.token);
+        this.userService.user = response;
         console.log(response);
       },
       error: (error) => {
-        // Handle login error
         console.log('произошла ошибка при входе', error);
       },
     });
+    this.userService.userIsAuthenticated = true;
+    this.router.navigate(['']);
   }
 }

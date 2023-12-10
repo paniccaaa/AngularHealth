@@ -2,15 +2,33 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+export interface User {
+  token: string;
+  data: {
+    id: number;
+    email: string;
+    password: string;
+    fullName: string;
+    age: number;
+    gender: string;
+  };
+}
+
+export interface Credentials {
+  email: string;
+  password: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  user!: User;
   private apiUrl = 'https://808ad2a997f895b8.mokky.dev';
 
   constructor(private http: HttpClient) {}
 
-  register(user: any): Observable<any> {
+  register(user: User): Observable<any> {
     return this.http.post(`${this.apiUrl}/register`, user);
   }
 

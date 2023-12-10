@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { debounceTime } from 'rxjs';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { CategoryService } from 'src/app/services/category/category.service';
 import {
   Doctor,
   DoctorsService,
 } from 'src/app/services/doctors/doctors.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-home',
@@ -13,10 +15,13 @@ import {
 })
 export class HomeComponent implements OnInit {
   doctors: Doctor[] = [];
+  userIsAuth!: boolean;
 
   constructor(
     private doctorsService: DoctorsService,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private userService: UserService,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
@@ -26,6 +31,10 @@ export class HomeComponent implements OnInit {
       .subscribe(() => {
         this.loadDoctors();
       });
+
+    this.userIsAuth = this.userService.userIsAuthenticated;
+    const token = this.authService.getToken();
+    this.userService.checkAuthorization(token);
   }
 
   loadDoctors() {

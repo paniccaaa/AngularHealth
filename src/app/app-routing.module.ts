@@ -9,9 +9,10 @@ import { UsersReviewsComponent } from './pages/users-reviews/users-reviews.compo
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AppointmentsComponent } from './pages/appointments/appointments.component';
 import { DoctorsListComponent } from './pages/doctors-list/doctors-list.component';
+import { authGuard } from './guards/auth/auth.guard';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', canActivate: [authGuard], component: HomeComponent },
   { path: 'profile', component: UserProfileComponent },
   { path: 'auth', component: AuthComponent },
   { path: 'appointments-schedule', component: AppointmentsScheduleComponent },

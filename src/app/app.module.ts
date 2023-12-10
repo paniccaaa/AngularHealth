@@ -22,6 +22,8 @@ import { DoctorsService } from './services/doctors/doctors.service';
 import { CategoryService } from './services/category/category.service';
 import { AppointmentsService } from './services/appointments/appointments.service';
 import { DashboardService } from './services/dashboard/dashboard.service';
+import { UserService } from './services/user/user.service';
+import { authGuard } from './guards/auth/auth.guard';
 
 @NgModule({
   declarations: [
@@ -53,6 +55,7 @@ import { DashboardService } from './services/dashboard/dashboard.service';
     CategoryService,
     AppointmentsService,
     DashboardService,
+    UserService,
   ],
   bootstrap: [AppComponent],
 })
