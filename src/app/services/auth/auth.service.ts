@@ -23,7 +23,6 @@ export interface Credentials {
   providedIn: 'root',
 })
 export class AuthService {
-  user!: User;
   private apiUrl = 'https://808ad2a997f895b8.mokky.dev';
 
   constructor(private http: HttpClient) {}

@@ -47,13 +47,13 @@ export class AuthComponent {
         this.authService.saveToken(response.token);
         this.userService.user = response;
         console.log(response);
+        this.userService.userIsAuthenticated = true;
+        this.router.navigate(['']);
       },
       error: (error) => {
         console.log('произошла ошибка при регистрации', error);
       },
     });
-    this.userService.userIsAuthenticated = true;
-    this.router.navigate(['']);
   }
 
   login(): void {
@@ -67,12 +67,12 @@ export class AuthComponent {
         this.authService.saveToken(response.token);
         this.userService.user = response;
         console.log(response);
+        this.userService.userIsAuthenticated = true;
+        this.router.navigate(['']);
       },
       error: (error) => {
         console.log('произошла ошибка при входе', error);
       },
     });
-    this.userService.userIsAuthenticated = true;
-    this.router.navigate(['']);
   }
 }

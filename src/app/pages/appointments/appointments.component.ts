@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppointmentsService } from 'src/app/services/appointments/appointments.service';
 
 export interface Appointment {
-  id: number;
+  //id: number;
   user_id: number;
   user_name: string;
   doctor_id: number;

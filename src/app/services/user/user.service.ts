@@ -9,6 +9,8 @@ import { catchError, map, of, tap } from 'rxjs';
 export class UserService {
   user!: User;
   userIsAuthenticated: boolean = false;
+  urlAuthMe = 'https://808ad2a997f895b8.mokky.dev/auth_me';
+  urlUsers = 'https://808ad2a997f895b8.mokky.dev/users';
   constructor(private http: HttpClient) {}
 
   checkAuthorization(token: string | null) {
@@ -23,20 +25,22 @@ export class UserService {
       Authorization: 'Bearer ' + token,
     });
 
-    this.http
-      .get('https://808ad2a997f895b8.mokky.dev/auth_me', { headers })
-      .subscribe({
-        next: (res) => {
-          if (res) {
-            console.log(res);
-            this.userIsAuthenticated = true;
-          }
-        },
-        error: (error) => {
-          console.log('произошла ошибка при auth_me', error);
-          this.userIsAuthenticated = false;
-        },
-      });
+    this.http.get(this.urlAuthMe, { headers }).subscribe({
+      next: (res) => {
+        if (res) {
+          console.log(res);
+          this.userIsAuthenticated = true;
+        }
+      },
+      error: (error) => {
+        console.log('произошла ошибка при auth_me', error);
+        this.userIsAuthenticated = false;
+      },
+    });
+  }
+
+  editUser(id: string, user: any) {
+    return this.http.patch(`${this.urlUsers}/${id}`, user);
   }
 }
 

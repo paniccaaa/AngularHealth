@@ -1,13 +1,13 @@
 <mat-card class="appointment-card">
   <mat-card-header>
-    <img mat-card-avatar alt="Photo of a Doctor" src="https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/848.jpg">
-    <mat-card-title>Dr. Wendy Yii</mat-card-title>
-    <mat-card-subtitle>Dermatology</mat-card-subtitle>
+    <img mat-card-avatar [alt]="doctor.name" [src]="doctor.avatar">
+    <mat-card-title>{{doctor.name}}</mat-card-title>
+    <mat-card-subtitle>{{doctor.speciality}}</mat-card-subtitle>
   </mat-card-header>
 
   <mat-card-content>
-    <p><mat-icon class="icon">date_range</mat-icon>Tuesday, 11/07/2023</p>
-    <p><mat-icon class="icon">schedule</mat-icon>10:00 AM</p>
+    <p><mat-icon class="icon">date_range</mat-icon>{{appointment.date}}</p>
+    <p><mat-icon class="icon">schedule</mat-icon>{{appointment.time}}</p>
   </mat-card-content>
 
   <mat-card-actions class="mat-card-actions" [ngSwitch]="eventTime">

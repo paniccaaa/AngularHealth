@@ -1,13 +1,14 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { formatDate } from '@angular/common';
 import { FormControl } from '@angular/forms';
-import { map, Observable, startWith, switchMap } from 'rxjs';
+import { map, Observable, startWith } from 'rxjs';
 import {
   Doctor,
   DoctorsService,
 } from 'src/app/services/doctors/doctors.service';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-doctor-details',
@@ -20,13 +21,12 @@ export class DoctorDetailsComponent implements OnInit {
   formattedDate: string = '';
   selectedTime: string = '';
   myControl = new FormControl('');
-  //options?: string[];
   filteredOptions?: Observable<string[] | undefined>;
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
-    private doctorsService: DoctorsService
+    private doctorsService: DoctorsService,
+    private userService: UserService
   ) {}
 
   ngOnInit() {

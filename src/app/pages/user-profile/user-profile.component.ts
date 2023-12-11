@@ -11,11 +11,33 @@ export class UserProfileComponent implements OnInit {
   user!: User;
   selectedGender = '';
   genders = ['Male', 'Female', 'Other'];
+
   constructor(private userService: UserService) {}
 
   ngOnInit() {
     this.user = this.userService.user;
+    console.log(this.user);
   }
 
-  editUserInfo() {}
+  editUserInfo() {
+    const userWithoutToken = {
+      id: this.user.data.id,
+      email: this.user.data.email,
+      password: this.user.data.password,
+      fullName: this.user.data.fullName,
+      age: this.user.data.age,
+      gender: this.user.data.gender,
+    };
+
+    this.userService
+      .editUser(this.user.data.id.toString(), userWithoutToken)
+      .subscribe({
+        next: (resp) => {
+          console.log(resp);
+        },
+        error: (error) => {
+          console.log('произошла ошибка при редак. юзера: ', error);
+        },
+      });
+  }
 }

@@ -2,24 +2,33 @@
 
   <mat-tab label="Upcoming">
     <div class="doctor-card-container">
-      <div class="doctor-card-column" *ngFor="let doctor of doctors">
-        <app-appointment-today eventTime="Upcoming"></app-appointment-today>
+      <div class="doctor-card-column" *ngFor="let upcoming of upcomingApp">
+        <app-appointment-today 
+          [doctorId]="upcoming.doctor_id"
+          [appointment]="upcoming"
+          eventTime="Upcoming"></app-appointment-today>
       </div>
     </div>
   </mat-tab>
 
   <mat-tab label="Completed">
     <div class="doctor-card-container">
-      <div class="doctor-card-column" *ngFor="let doctor of doctors">
-        <app-appointment-today eventTime="Completed"></app-appointment-today>
+      <div class="doctor-card-column" *ngFor="let completed of completedApp">
+        <app-appointment-today
+          [doctorId]="completed.doctor_id"
+          [appointment]="completed"
+          eventTime="Completed"></app-appointment-today>
       </div>
     </div>
   </mat-tab>
 
   <mat-tab label="Canceled">
     <div class="doctor-card-container">
-      <div class="doctor-card-column" *ngFor="let doctor of doctors">
-        <app-appointment-today eventTime="Canceled"></app-appointment-today>
+      <div class="doctor-card-column" *ngFor="let canceled of canceledApp">
+        <app-appointment-today 
+          [doctorId]="canceled.doctor_id"
+          [appointment]="canceled"
+          eventTime="Canceled"></app-appointment-today>
       </div>
     </div>
   </mat-tab>
