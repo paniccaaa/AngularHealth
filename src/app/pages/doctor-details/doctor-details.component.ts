@@ -9,7 +9,8 @@ import {
 } from 'src/app/services/doctors/doctors.service';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/services/user/user.service';
-
+import { AppointmentsService } from 'src/app/services/appointments/appointments.service';
+import { Appointment } from '../appointments/appointments.component';
 @Component({
   selector: 'app-doctor-details',
   templateUrl: './doctor-details.component.html',
@@ -17,7 +18,7 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class DoctorDetailsComponent implements OnInit {
   doctor?: Doctor;
-  selected!: Date | string | null;
+  selected: Date | string | null = '';
   formattedDate: string = '';
   selectedTime: string = '';
   myControl = new FormControl('');
@@ -26,7 +27,8 @@ export class DoctorDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private doctorsService: DoctorsService,
-    private userService: UserService
+    private userService: UserService,
+    private appointmentService: AppointmentsService
   ) {}
 
   ngOnInit() {
@@ -61,5 +63,26 @@ export class DoctorDetailsComponent implements OnInit {
     } else {
       this.selected = '';
     }
+  }
+
+  bookAppointment() {
+    const appointment: Appointment = {
+      user_id: this.userService.user.data.id,
+      user_name: this.userService.user.data.fullName,
+      doctor_id: this.doctor?.id || -1,
+      doctor_name: this.doctor?.name || '',
+      date:
+        (this.selected instanceof Date
+          ? this.selected
+          : new Date()
+        )?.toDateString() ?? '',
+      time: this.selectedTime,
+      status: 'upcoming',
+    };
+
+    this.appointmentService.bookAppointment(appointment).subscribe({
+      next: (app) => console.log('success book: ', app),
+      error: (err) => console.log('err user booking appointment: ', err),
+    });
   }
 }

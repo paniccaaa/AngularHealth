@@ -20,7 +20,30 @@ export class DashboardComponent implements OnInit {
   @ViewChild(MatTabGroup) tabGroup!: MatTabGroup;
 
   doctors: Doctor[] = [];
-  selectedDoctor!: Doctor;
+  selectedDoctor: Doctor = {
+    id: 1,
+    name: 'Wendy Yii',
+    universities:
+      'MBBS (International Medical University, Malaysia), MRCP (Royal College of Physicians, United Kingdom)',
+    patients: 56,
+    experience: 9,
+    avatar:
+      'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/848.jpg',
+    description: "I'm a dermatology specialist",
+    speciality: 'Dermatology',
+    timingsList: [
+      '8:00 AM',
+      '9:00 AM',
+      '10:00 AM',
+      '11:00 AM',
+      '1:00 PM',
+      '2:00 PM',
+      '3:00 PM',
+      '4:00 PM',
+      '5:00 PM',
+      '7:00 PM',
+    ],
+  };
   categories: Category[] = [];
 
   selectedCategory = '';

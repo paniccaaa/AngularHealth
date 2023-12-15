@@ -34,7 +34,7 @@
 
         <p>Selected date: {{ selected }}</p>
         <p>Selected time: {{ selectedTime }}</p>
-        <button mat-raised-button color="primary">
+        <button mat-raised-button color="primary" (click)="bookAppointment()">
           <mat-icon>date_range</mat-icon>
           Book Appointment
         </button>

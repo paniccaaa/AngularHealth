@@ -4,8 +4,9 @@
   </button>
   <span routerLink="" style="cursor: pointer;">Angular Health</span>
   <span class="example-spacer"></span>
-
-  <button routerLink="auth" mat-button>Sing Up</button>
+  
+  <button *ngIf="user" routerLink="auth" mat-button>Sing Up</button>
+  
 
 </mat-toolbar>
 

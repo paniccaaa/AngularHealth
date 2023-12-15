@@ -14,7 +14,7 @@ export class AppointmentTodayComponent implements OnInit {
   @Input() eventTime: string = 'Upcoming';
   @Input() appointment!: Appointment;
   @Input() doctorId!: number;
-  doctor!: Doctor;
+  doctor?: Doctor;
 
   constructor(private doctorsService: DoctorsService) {}
 
