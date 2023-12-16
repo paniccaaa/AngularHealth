@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { UserService } from '../user/user.service';
 
 export interface User {
   token: string;
@@ -25,7 +26,7 @@ export interface Credentials {
 export class AuthService {
   private apiUrl = 'https://808ad2a997f895b8.mokky.dev';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private userService: UserService) {}
 
   register(user: User): Observable<any> {
     return this.http.post(`${this.apiUrl}/register`, user);
@@ -45,5 +46,6 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem('token');
+    this.userService.userIsAuthenticated = false;
   }
 }

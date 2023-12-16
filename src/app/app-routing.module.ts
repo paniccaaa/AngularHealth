@@ -8,19 +8,33 @@ import { DoctorDetailsComponent } from './pages/doctor-details/doctor-details.co
 import { UsersReviewsComponent } from './pages/users-reviews/users-reviews.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AppointmentsComponent } from './pages/appointments/appointments.component';
-import { DoctorsListComponent } from './pages/doctors-list/doctors-list.component';
 import { authGuard } from './guards/auth/auth.guard';
 
 const routes: Routes = [
   { path: '', canActivate: [authGuard], component: HomeComponent },
-  { path: 'profile', component: UserProfileComponent },
+  {
+    path: 'profile',
+    canActivate: [authGuard],
+    component: UserProfileComponent,
+  },
   { path: 'auth', component: AuthComponent },
-  { path: 'appointments-schedule', component: AppointmentsScheduleComponent },
-  { path: 'doctor/:id', component: DoctorDetailsComponent },
-  { path: 'doctor/id/rewievs', component: UsersReviewsComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'appointments', component: AppointmentsComponent },
-  { path: 'doctors-list', component: DoctorsListComponent },
+  {
+    path: 'appointments-schedule',
+    canActivate: [authGuard],
+    component: AppointmentsScheduleComponent,
+  },
+  {
+    path: 'doctor/:id',
+    canActivate: [authGuard],
+    component: DoctorDetailsComponent,
+  },
+  {
+    path: 'doctor/id/rewievs',
+    canActivate: [authGuard],
+    component: UsersReviewsComponent,
+  },
+  { path: 'dashboard', component: DashboardComponent }, //тут гуард на админа отдельный сделать
+  { path: 'appointments', component: AppointmentsComponent }, //тут гуард на админа отдельный сделать
 ];
 
 
