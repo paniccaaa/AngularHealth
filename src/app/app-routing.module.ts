@@ -9,6 +9,7 @@ import { UsersReviewsComponent } from './pages/users-reviews/users-reviews.compo
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AppointmentsComponent } from './pages/appointments/appointments.component';
 import { authGuard } from './guards/auth/auth.guard';
+import { adminGuard } from './guards/admin/admin.guard';
 
 const routes: Routes = [
   { path: '', canActivate: [authGuard], component: HomeComponent },
@@ -30,8 +31,16 @@ const routes: Routes = [
     path: 'doctor/id/rewievs',
     component: UsersReviewsComponent,
   },
-  { path: 'dashboard', component: DashboardComponent }, //тут гуард на админа отдельный сделать
-  { path: 'appointments', component: AppointmentsComponent }, //тут гуард на админа отдельный сделать
+  {
+    path: 'dashboard',
+    canActivate: [adminGuard],
+    component: DashboardComponent,
+  }, //тут гуард на админа отдельный сделать
+  {
+    path: 'appointments',
+    canActivate: [adminGuard],
+    component: AppointmentsComponent,
+  }, //тут гуард на админа отдельный сделать
 ];
 
 

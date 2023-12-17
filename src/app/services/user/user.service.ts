@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from '../auth/auth.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, map, of, tap } from 'rxjs';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -9,6 +9,7 @@ import { catchError, map, of, tap } from 'rxjs';
 export class UserService {
   user!: User;
   userIsAuthenticated: boolean = false;
+  userChanged = new Subject<User>();
   urlAuthMe = 'https://808ad2a997f895b8.mokky.dev/auth_me';
   urlUsers = 'https://808ad2a997f895b8.mokky.dev/users';
   constructor(private http: HttpClient) {}
@@ -25,11 +26,13 @@ export class UserService {
       Authorization: 'Bearer ' + token,
     });
 
-    this.http.get(this.urlAuthMe, { headers }).subscribe({
+    this.http.get<User>(this.urlAuthMe, { headers }).subscribe({
       next: (res) => {
         if (res) {
           console.log(res);
+          this.user = res;
           this.userIsAuthenticated = true;
+          this.userChanged.next(this.user);
         }
       },
       error: (error) => {
