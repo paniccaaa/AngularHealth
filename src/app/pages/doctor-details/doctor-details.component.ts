@@ -10,7 +10,17 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/services/user/user.service';
 import { AppointmentsService } from 'src/app/services/appointments/appointments.service';
-import { Appointment } from '../appointments/appointments.component';
+
+export interface AppointmentWithoutId {
+  user_id: number;
+  user_name: string;
+  doctor_id: number;
+  doctor_name: string;
+  date: string;
+  time: string;
+  status: string;
+}
+
 @Component({
   selector: 'app-doctor-details',
   templateUrl: './doctor-details.component.html',
@@ -66,7 +76,7 @@ export class DoctorDetailsComponent implements OnInit {
   }
 
   bookAppointment() {
-    const appointment: Appointment = {
+    const appointment: AppointmentWithoutId = {
       user_id: this.userService.user.data.id,
       user_name: this.userService.user.data.fullName,
       doctor_id: this.doctor?.id || -1,

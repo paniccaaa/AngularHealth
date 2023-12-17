@@ -13,8 +13,8 @@
   <mat-card-actions class="mat-card-actions" [ngSwitch]="eventTime">
     
     <ng-template ngSwitchCase="Upcoming">
-      <button mat-raised-button color="warn">Cancel</button>
-      <button mat-raised-button color="primary">Complete</button>
+      <button mat-raised-button color="warn" (click)="cancelAppointment()">Cancel</button>
+      <button mat-raised-button color="primary" (click)="completeAppointment()">Complete</button>
     </ng-template>
     
     <ng-template ngSwitchCase="Completed">

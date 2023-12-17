@@ -14,7 +14,6 @@ const routes: Routes = [
   { path: '', canActivate: [authGuard], component: HomeComponent },
   {
     path: 'profile',
-    canActivate: [authGuard],
     component: UserProfileComponent,
   },
   { path: 'auth', component: AuthComponent },
@@ -25,12 +24,10 @@ const routes: Routes = [
   },
   {
     path: 'doctor/:id',
-    canActivate: [authGuard],
     component: DoctorDetailsComponent,
   },
   {
     path: 'doctor/id/rewievs',
-    canActivate: [authGuard],
     component: UsersReviewsComponent,
   },
   { path: 'dashboard', component: DashboardComponent }, //тут гуард на админа отдельный сделать

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppointmentsService } from 'src/app/services/appointments/appointments.service';
-import { DoctorsService } from 'src/app/services/doctors/doctors.service';
 import { Appointment } from '../appointments/appointments.component';
+import { AppointmentEventService } from 'src/app/services/appointment-event/appointment-event.service';
 
 @Component({
   selector: 'app-appointments-schedule',
@@ -16,11 +16,15 @@ export class AppointmentsScheduleComponent implements OnInit {
 
   constructor(
     private appointmentsService: AppointmentsService,
-    private doctorsService: DoctorsService
+    private appointmentEventService: AppointmentEventService
   ) {}
 
   ngOnInit() {
     this.loadAppointments();
+
+    this.appointmentEventService.appointmentEvent$.subscribe(() => {
+      this.loadAppointments();
+    });
   }
 
   loadAppointments() {

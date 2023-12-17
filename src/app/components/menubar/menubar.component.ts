@@ -23,9 +23,6 @@ export class MenubarComponent implements OnInit {
 
   logoutHandler() {
     this.authService.logout();
-    //this.userIsAuth = this.userService.userIsAuthenticated;
-    const token = this.authService.getToken();
-    this.userService.checkAuthorization(token);
     this.router.navigate(['/auth']);
   }
 }

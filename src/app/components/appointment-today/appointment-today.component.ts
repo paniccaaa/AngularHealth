@@ -1,5 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Appointment } from 'src/app/pages/appointments/appointments.component';
+import { AppointmentEventService } from 'src/app/services/appointment-event/appointment-event.service';
+import { AppointmentsService } from 'src/app/services/appointments/appointments.service';
 import {
   Doctor,
   DoctorsService,
@@ -16,7 +19,12 @@ export class AppointmentTodayComponent implements OnInit {
   @Input() doctorId!: number;
   doctor?: Doctor;
 
-  constructor(private doctorsService: DoctorsService) {}
+  constructor(
+    private doctorsService: DoctorsService,
+    private appointmentsService: AppointmentsService,
+    private router: Router,
+    private appointmentEventService: AppointmentEventService
+  ) {}
 
   ngOnInit() {
     this.loadDoctor();
@@ -28,5 +36,26 @@ export class AppointmentTodayComponent implements OnInit {
       error: (err) =>
         console.log('при получении доктора произошла ошибка: ', err),
     });
+  }
+
+  cancelAppointment() {
+    this.appointmentsService.cancelAppointment(this.appointment.id).subscribe({
+      next: () => {
+        this.appointmentEventService.triggerAppointmentEvent();
+      },
+      error: (err) => console.log('при отмене встречи произошла ошибка: ', err),
+    });
+  }
+
+  completeAppointment() {
+    this.appointmentsService
+      .completeAppointment(this.appointment.id)
+      .subscribe({
+        next: () => {
+          this.appointmentEventService.triggerAppointmentEvent();
+        },
+        error: (err) =>
+          console.log('при завершении встречи произошла ошибка: ', err),
+      });
   }
 }

@@ -24,6 +24,7 @@ import { AppointmentsService } from './services/appointments/appointments.servic
 import { DashboardService } from './services/dashboard/dashboard.service';
 import { UserService } from './services/user/user.service';
 import { authGuard } from './guards/auth/auth.guard';
+import { AppointmentEventService } from './services/appointment-event/appointment-event.service';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { authGuard } from './guards/auth/auth.guard';
     AppointmentsService,
     DashboardService,
     UserService,
+    AppointmentEventService,
   ],
   bootstrap: [AppComponent],
 })
