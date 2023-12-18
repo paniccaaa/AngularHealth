@@ -15,7 +15,6 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class HomeComponent implements OnInit {
   doctors: Doctor[] = [];
-  userIsAuth!: boolean;
 
   constructor(
     private doctorsService: DoctorsService,
@@ -32,7 +31,6 @@ export class HomeComponent implements OnInit {
         this.loadDoctors();
       });
 
-    this.userIsAuth = this.userService.userIsAuthenticated;
     const token = this.authService.getToken();
     this.userService.checkAuthorization(token);
   }

@@ -62,6 +62,7 @@ export class DoctorDetailsComponent implements OnInit {
       option.toLowerCase().includes(filterValue)
     );
   }
+
   onDateChange(event: MatDatepickerInputEvent<Date>) {
     this.selected = event.value;
     this.formatDate();

@@ -47,7 +47,6 @@ export class AuthComponent {
         this.authService.saveToken(response.token);
         this.userService.user = response;
         console.log(response);
-        this.userService.userIsAuthenticated = true;
         this.router.navigate(['']);
       },
       error: (error) => {
@@ -67,7 +66,6 @@ export class AuthComponent {
         this.authService.saveToken(response.token);
         this.userService.user = response;
         console.log(response);
-        this.userService.userIsAuthenticated = true;
         this.router.navigate(['']);
       },
       error: (error) => {

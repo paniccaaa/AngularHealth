@@ -17,17 +17,15 @@ export interface UserWithoutToken {
 })
 export class UserService {
   user!: User;
-  userIsAuthenticated: boolean = false;
   userChanged = new Subject<User>();
   urlAuthMe = 'https://808ad2a997f895b8.mokky.dev/auth_me';
   urlUsers = 'https://808ad2a997f895b8.mokky.dev/users';
+
   constructor(private http: HttpClient) {}
 
   checkAuthorization(token: string | null) {
     if (!token) {
       console.error('Токен отсутствует');
-      // Дополнительная обработка, например, перенаправление на страницу входа
-      this.userIsAuthenticated = false;
       return;
     }
 
@@ -40,13 +38,11 @@ export class UserService {
         if (res) {
           console.log(res);
           this.user = res;
-          this.userIsAuthenticated = true;
           this.userChanged.next(this.user);
         }
       },
       error: (error) => {
         console.log('произошла ошибка при auth_me', error);
-        this.userIsAuthenticated = false;
       },
     });
   }

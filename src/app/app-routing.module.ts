@@ -34,14 +34,14 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    canActivate: [adminGuard],
+    canActivate: [authGuard, adminGuard],
     component: DashboardComponent,
-  }, //тут гуард на админа отдельный сделать
+  },
   {
     path: 'appointments',
-    canActivate: [adminGuard],
+    canActivate: [authGuard, adminGuard],
     component: AppointmentsComponent,
-  }, //тут гуард на админа отдельный сделать
+  },
 ];
 
 
