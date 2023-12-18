@@ -35,10 +35,10 @@ export class DoctorDetailsComponent implements OnInit {
   filteredOptions?: Observable<string[] | undefined>;
 
   constructor(
-    private route: ActivatedRoute,
+    private appointmentService: AppointmentsService,
     private doctorsService: DoctorsService,
-    private userService: UserService,
-    private appointmentService: AppointmentsService
+    private route: ActivatedRoute,
+    private userService: UserService
   ) {}
 
   ngOnInit() {
@@ -69,10 +69,14 @@ export class DoctorDetailsComponent implements OnInit {
   }
 
   formatDate() {
-    if (this.selected) {
-      this.selected = formatDate(this.selected, 'EEEE, MM/dd/yyyy', 'en-US');
+    if (this.selected instanceof Date) {
+      this.formattedDate = formatDate(
+        this.selected,
+        'EEEE, MM/dd/yyyy',
+        'en-US'
+      );
     } else {
-      this.selected = '';
+      this.formattedDate = '';
     }
   }
 
@@ -82,11 +86,7 @@ export class DoctorDetailsComponent implements OnInit {
       user_name: this.userService.user.data.fullName,
       doctor_id: this.doctor?.id || -1,
       doctor_name: this.doctor?.name || '',
-      date:
-        (this.selected instanceof Date
-          ? this.selected
-          : new Date()
-        )?.toDateString() ?? '',
+      date: this.formattedDate,
       time: this.selectedTime,
       status: 'upcoming',
     };
