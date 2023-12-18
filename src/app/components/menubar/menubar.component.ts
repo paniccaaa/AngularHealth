@@ -34,6 +34,7 @@ export class MenubarComponent implements OnInit, OnDestroy {
   }
 
   logoutHandler() {
+    this.userService.clearUser();
     this.authService.logout();
   }
 }

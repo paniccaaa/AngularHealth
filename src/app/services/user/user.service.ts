@@ -50,5 +50,9 @@ export class UserService {
   editUser(id: string, user: UserWithoutToken) {
     return this.http.patch(`${this.urlUsers}/${id}`, user);
   }
+
+  clearUser() {
+    this.user = undefined!;
+  }
 }
 
