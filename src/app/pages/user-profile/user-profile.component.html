@@ -40,5 +40,11 @@
   </div>
   <div class="buttons-container">  
     <button mat-raised-button color="primary" (click)="editUserInfo()">Edit personal info</button>
+
+    @if (user.data.email === 'admin@admin.com') {
+      <button routerLink="/dashboard" mat-raised-button><mat-icon>dashboard</mat-icon>Dashboard</button>
+      <button routerLink="/appointments" mat-raised-button><mat-icon>view_list</mat-icon>Appointments</button>
+    }
+    
   </div>
 </div>

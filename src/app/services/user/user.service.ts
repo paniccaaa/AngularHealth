@@ -3,6 +3,15 @@ import { User } from '../auth/auth.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Subject } from 'rxjs';
 
+export interface UserWithoutToken {
+  id: number;
+  email: string;
+  password: string;
+  fullName: string;
+  age: number;
+  gender: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -42,7 +51,7 @@ export class UserService {
     });
   }
 
-  editUser(id: string, user: any) {
+  editUser(id: string, user: UserWithoutToken) {
     return this.http.patch(`${this.urlUsers}/${id}`, user);
   }
 }
