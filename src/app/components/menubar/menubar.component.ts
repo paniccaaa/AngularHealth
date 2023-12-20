@@ -29,7 +29,7 @@ export class MenubarComponent implements OnInit, OnDestroy {
     );
   }
 
-  ngOnDestroy(): void {
+  ngOnDestroy() {
     this.userSubscription.unsubscribe();
   }
 

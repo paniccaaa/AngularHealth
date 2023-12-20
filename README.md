@@ -1,4 +1,35 @@
-# AngularHealth
+# Angular Health
+
+Demo: https://angular-health.vercel.app/
+
+To login as admin, use Email: admin@admin.com and Password: admin.sem127
+
+## Application Features
+
+### Appointment Management
+
+Users can create, cancel, and complete appointments with doctors using this application. The system allows for seamless scheduling and interaction with healthcare professionals.
+
+### User Roles
+
+- **User:** 
+  - Create new appointments with doctors.
+  - Cancel and complete appointments as needed.
+  - Reviews doctors (in future)
+
+- **Admin:**
+  - View and manage all appointments.
+  - Edit details of doctors to ensure accurate information is maintained.
+
+## My Stack
+
+- **Angular 17**
+  
+- **Angular Material** / **SCSS**
+  
+- **RxJS**
+  
+- **Backend as a Service: https://mokky.dev/**
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.7.
 

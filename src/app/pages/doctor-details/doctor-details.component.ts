@@ -7,7 +7,7 @@ import {
   Doctor,
   DoctorsService,
 } from 'src/app/services/doctors/doctors.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/services/user/user.service';
 import { AppointmentsService } from 'src/app/services/appointments/appointments.service';
 
@@ -38,7 +38,8 @@ export class DoctorDetailsComponent implements OnInit {
     private appointmentService: AppointmentsService,
     private doctorsService: DoctorsService,
     private route: ActivatedRoute,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -92,7 +93,10 @@ export class DoctorDetailsComponent implements OnInit {
     };
 
     this.appointmentService.bookAppointment(appointment).subscribe({
-      next: (app) => console.log('success book: ', app),
+      next: () => {
+        alert('Successfully booked appointment!');
+        this.router.navigate(['']);
+      },
       error: (err) => console.log('err user booking appointment: ', err),
     });
   }

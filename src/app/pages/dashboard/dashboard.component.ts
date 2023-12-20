@@ -84,8 +84,8 @@ export class DashboardComponent implements OnInit {
     this.selectedDoctor.timingsList = this.timings.value;
     this.dashboardService.addDoctor(this.selectedDoctor).subscribe((doc) => {
       doc
-        ? alert('Успешно добавлен новый доктор')
-        : alert('Не получилось добавить');
+        ? alert('Successfully added a new doctor')
+        : alert("Couldn't add the doctor");
       this.loadDoctors();
     });
   }
@@ -95,7 +95,9 @@ export class DashboardComponent implements OnInit {
     this.dashboardService
       .editDoctor(this.selectedDoctor.id.toString(), this.selectedDoctor)
       .subscribe((doc) => {
-        doc ? alert('Успешно edit новый доктор') : alert('Не получилось edit');
+        doc
+          ? alert('Successfully edited the doctor')
+          : alert("Couldn't edit the doctor");
         this.loadDoctors();
       });
   }
@@ -110,14 +112,12 @@ export class DashboardComponent implements OnInit {
   }
 
   selectDoctorEditorTab(id: number) {
-    console.log('Selecting doctor with ID:', id);
-
     this.tabGroup.selectedIndex = 1;
 
     this.doctorsService.getDoctorById(id.toString()).subscribe((doctor) => {
       this.selectedDoctor = doctor;
-      this.timingsList = doctor.timingsList;
-      this.timings = new FormControl(this.timingsList); //тут не хочет заполняться форма
+      this.timingsList = Array.from(new Set(doctor.timingsList));
+      this.timings = new FormControl(this.timingsList);
     });
   }
 
@@ -126,5 +126,44 @@ export class DashboardComponent implements OnInit {
       this.doctors = doctors;
     });
     this.tabGroup.selectedIndex = 0;
+  }
+
+  addTiming() {
+    const newTiming = prompt('Enter a new timing');
+    if (newTiming && !this.timingsList.includes(newTiming)) {
+      this.timingsList.push(newTiming);
+      this.timingsList.sort((a, b) => this.compareTimings(a, b));
+    }
+  }
+
+  compareTimings(a: string, b: string): number {
+    // Split strings by space and take the first part (hours) and the second part (AM/PM)
+    const [hoursA, periodA] = a.split(' ');
+    const [hoursB, periodB] = b.split(' ');
+
+    // Convert AM/PM to 24-hour format for proper comparison
+    const hoursA24 =
+      periodA === 'AM' ? parseInt(hoursA) : parseInt(hoursA) + 12;
+    const hoursB24 =
+      periodB === 'AM' ? parseInt(hoursB) : parseInt(hoursB) + 12;
+
+    // Compare by hours
+    if (hoursA24 < hoursB24) {
+      return -1;
+    } else if (hoursA24 > hoursB24) {
+      return 1;
+    } else {
+      // If hours are equal, compare by minutes
+      const minutesA = parseInt(a.split(':')[1]);
+      const minutesB = parseInt(b.split(':')[1]);
+
+      if (minutesA < minutesB) {
+        return -1;
+      } else if (minutesA > minutesB) {
+        return 1;
+      } else {
+        return 0;
+      }
+    }
   }
 }

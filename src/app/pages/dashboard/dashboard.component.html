@@ -107,15 +107,17 @@
           </mat-select>
         </mat-form-field>
       </div>
-      
-      <input matInput>
-      <button>Add a new Timing Work</button>
+
+      <div style="display: flex; justify-content: center">
+        <button mat-raised-button (click)="addTiming()">Add a new Timing Work</button>
+      </div>
 
       <div class="buttons-container">  
         <button (click)="addDoctor()" mat-raised-button color="primary">Add a new doctor</button>
         <button (click)="editDoctor()" mat-raised-button color="primary">Edit doctor</button>
         <button (click)="deleteDoctor()" mat-raised-button color="warn">Delete doctor</button>
       </div>
+
     </div>
   </mat-tab>
 
