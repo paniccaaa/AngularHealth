@@ -45,8 +45,6 @@ export class AuthComponent {
     this.authService.register(user).subscribe({
       next: (response: AuthResponse) => {
         this.authService.saveToken(response.token);
-        this.userService.user = response;
-        console.log(response);
         this.router.navigate(['']);
       },
       error: (error) => {
@@ -62,10 +60,8 @@ export class AuthComponent {
     };
 
     this.authService.login(credentials).subscribe({
-      next: (response) => {
+      next: (response: AuthResponse) => {
         this.authService.saveToken(response.token);
-        this.userService.user = response;
-        console.log(response);
         this.router.navigate(['']);
       },
       error: (error) => {

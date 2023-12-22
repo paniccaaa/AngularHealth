@@ -7,7 +7,7 @@
       <input
         type="text"
         matInput
-        [(ngModel)]="user.data.fullName">
+        [(ngModel)]="user.fullName">
     </mat-form-field>
 
     <mat-form-field>
@@ -16,7 +16,7 @@
         placeholder="example@gmail.com"
         type="text"
         matInput
-        [(ngModel)]="user.data.email">
+        [(ngModel)]="user.email">
     </mat-form-field>
     
     
@@ -25,12 +25,12 @@
       <input
         type="number"
         matInput
-        [(ngModel)]="user.data.age">
+        [(ngModel)]="user.age">
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Gender</mat-label>
-      <mat-select [(ngModel)]="user.data.gender" name="food">
+      <mat-select [(ngModel)]="user.gender" name="food">
         @for (gender of genders; track gender) {
           <mat-option [value]="gender">{{gender}}</mat-option>
         }
@@ -41,7 +41,7 @@
   <div class="buttons-container">  
     <button mat-raised-button color="primary" (click)="editUserInfo()">Edit personal info</button>
 
-    @if (user.data.email === 'admin@admin.com') {
+    @if (user.email === 'admin@admin.com') {
       <button routerLink="/dashboard" mat-raised-button><mat-icon>dashboard</mat-icon>Dashboard</button>
       <button routerLink="/appointments" mat-raised-button><mat-icon>view_list</mat-icon>Appointments</button>
     }

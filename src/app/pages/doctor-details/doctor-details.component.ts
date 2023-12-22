@@ -83,8 +83,8 @@ export class DoctorDetailsComponent implements OnInit {
 
   bookAppointment() {
     const appointment: AppointmentWithoutId = {
-      user_id: this.userService.user.data.id,
-      user_name: this.userService.user.data.fullName,
+      user_id: this.userService.user.id,
+      user_name: this.userService.user.fullName,
       doctor_id: this.doctor?.id || -1,
       doctor_name: this.doctor?.name || '',
       date: this.formattedDate,

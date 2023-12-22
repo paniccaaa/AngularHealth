@@ -12,7 +12,10 @@ import { authGuard } from './guards/auth/auth.guard';
 import { adminGuard } from './guards/admin/admin.guard';
 
 const routes: Routes = [
-  { path: '', canActivate: [authGuard], component: HomeComponent },
+  {
+    path: '',
+    component: HomeComponent,
+  },
   {
     path: 'profile',
     canActivate: [authGuard],

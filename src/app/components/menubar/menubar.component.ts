@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService, AuthResponse } from 'src/app/services/auth/auth.service';
-import { UserService } from 'src/app/services/user/user.service';
+import { User, UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-menubar',
@@ -10,8 +10,8 @@ import { UserService } from 'src/app/services/user/user.service';
   styleUrls: ['./menubar.component.scss'],
 })
 export class MenubarComponent implements OnInit, OnDestroy {
-  user!: AuthResponse;
-  test = true;
+  user!: User;
+  isOpened = false;
   private userSubscription!: Subscription;
 
   constructor(
@@ -23,7 +23,7 @@ export class MenubarComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.user = this.userService.user;
     this.userSubscription = this.userService.userChanged.subscribe(
-      (user: AuthResponse) => {
+      (user: User) => {
         this.user = user;
       }
     );
@@ -34,6 +34,7 @@ export class MenubarComponent implements OnInit, OnDestroy {
   }
 
   logoutHandler() {
+    this.isOpened = false;
     this.userService.clearUser();
     this.authService.logout();
   }

@@ -18,7 +18,7 @@ export class AppointmentsService {
 
   getAppointmentsByParams(status: string) {
     return this.http.get<Appointment[]>(
-      `${this.baseUrl}?user_id=${this.userService.user.data.id}&status=${status}`
+      `${this.baseUrl}?user_id=${this.userService.user.id}&status=${status}`
     );
   }
 

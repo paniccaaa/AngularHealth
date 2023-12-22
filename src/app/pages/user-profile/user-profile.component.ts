@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { AuthResponse } from 'src/app/services/auth/auth.service';
 import { UserService, User } from 'src/app/services/user/user.service';
 
 @Component({
@@ -9,7 +8,7 @@ import { UserService, User } from 'src/app/services/user/user.service';
   styleUrls: ['./user-profile.component.scss'],
 })
 export class UserProfileComponent implements OnInit, OnDestroy {
-  user!: AuthResponse;
+  user!: User;
   selectedGender = '';
   genders = ['Male', 'Female', 'Other'];
   private userSubscription!: Subscription;
@@ -19,7 +18,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.user = this.userService.user;
     this.userSubscription = this.userService.userChanged.subscribe(
-      (user: AuthResponse) => {
+      (user: User) => {
         this.user = user;
       }
     );
@@ -31,19 +30,19 @@ export class UserProfileComponent implements OnInit, OnDestroy {
 
   editUserInfo() {
     const userWithoutToken: User = {
-      id: this.user.data.id,
-      email: this.user.data.email,
-      password: this.user.data.password,
-      fullName: this.user.data.fullName,
-      age: this.user.data.age,
-      gender: this.user.data.gender,
+      id: this.user.id,
+      email: this.user.email,
+      password: this.user.password,
+      fullName: this.user.fullName,
+      age: this.user.age,
+      gender: this.user.gender,
     };
 
     this.userService
-      .editUser(this.user.data.id.toString(), userWithoutToken)
+      .editUser(this.user.id.toString(), userWithoutToken)
       .subscribe({
-        next: (resp) => {
-          console.log(resp);
+        next: () => {
+          alert('Successfully edited personal info');
         },
         error: (error) => {
           console.log('произошла ошибка при редак. юзера: ', error);

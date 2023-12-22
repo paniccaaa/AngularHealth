@@ -5,18 +5,18 @@
   <span routerLink="" style="cursor: pointer;">Angular Health</span>
   <span class="example-spacer"></span>
   
-  <button *ngIf="user" routerLink="auth" mat-button>Sing Up</button>
+  <button *ngIf="user === undefined" routerLink="auth" mat-button>Sing Up</button>
   
 
 </mat-toolbar>
 
 <mat-drawer-container autosize>
-  <mat-drawer #drawer [opened]="false" mode="over">
+  <mat-drawer #drawer [opened]="isOpened" mode="over">
     <mat-nav-list>
       <mat-list-item routerLink=""><button mat-button><mat-icon>home</mat-icon>Home</button></mat-list-item>
-      <mat-list-item routerLink="appointments-schedule"><button mat-button><mat-icon>schedule</mat-icon>Appointments Schedule</button></mat-list-item>
-      <mat-list-item routerLink="profile"><button mat-button><mat-icon>person</mat-icon>Profile</button></mat-list-item>
-      <mat-list-item (click)="logoutHandler()"><button mat-button><mat-icon>logout</mat-icon>Logout</button></mat-list-item>
+      <mat-list-item *ngIf="user !== undefined" routerLink="appointments-schedule"><button mat-button><mat-icon>schedule</mat-icon>Appointments Schedule</button></mat-list-item>
+      <mat-list-item routerLink="profile" *ngIf="user !== undefined"><button mat-button><mat-icon>person</mat-icon>Profile</button></mat-list-item>
+      <mat-list-item  (click)="logoutHandler()"><button (click)="drawer.toggle()" mat-button><mat-icon>logout</mat-icon>Logout</button></mat-list-item>
       <!-- <mat-list-item><button mat-button><mat-icon>help</mat-icon>Help</button></mat-list-item> -->
       
 

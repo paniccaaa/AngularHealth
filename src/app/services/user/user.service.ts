@@ -16,8 +16,9 @@ export interface User {
   providedIn: 'root',
 })
 export class UserService {
-  user!: AuthResponse;
-  userChanged = new Subject<AuthResponse>();
+  authResp!: AuthResponse;
+  user!: User;
+  userChanged = new Subject<User>();
   urlAuthMe = 'https://808ad2a997f895b8.mokky.dev/auth_me';
   urlUsers = 'https://808ad2a997f895b8.mokky.dev/users';
 
@@ -33,7 +34,7 @@ export class UserService {
       Authorization: 'Bearer ' + token,
     });
 
-    this.http.get<AuthResponse>(this.urlAuthMe, { headers }).subscribe({
+    this.http.get<User>(this.urlAuthMe, { headers }).subscribe({
       next: (res) => {
         if (res) {
           console.log(res);

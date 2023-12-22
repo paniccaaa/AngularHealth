@@ -31,8 +31,8 @@ export class HomeComponent implements OnInit {
         this.loadDoctors();
       });
 
-    // const token = this.authService.getToken();
-    // this.userService.checkAuthorization(token);
+    const token = this.authService.getToken();
+    this.userService.checkAuthorization(token);
   }
 
   loadDoctors() {
