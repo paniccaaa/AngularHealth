@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { UserService } from '../user/user.service';
 import { Router } from '@angular/router';
 
-export interface User {
+export interface AuthResponse {
   token: string;
   data: {
     id: number;
@@ -33,7 +33,7 @@ export class AuthService {
     private router: Router
   ) {}
 
-  register(user: User): Observable<any> {
+  register(user: AuthResponse): Observable<any> {
     return this.http.post(`${this.apiUrl}/register`, user);
   }
 

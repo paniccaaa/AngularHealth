@@ -1,10 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { User } from 'src/app/services/auth/auth.service';
-import {
-  UserService,
-  UserWithoutToken,
-} from 'src/app/services/user/user.service';
+import { AuthResponse } from 'src/app/services/auth/auth.service';
+import { UserService, User } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -12,7 +9,7 @@ import {
   styleUrls: ['./user-profile.component.scss'],
 })
 export class UserProfileComponent implements OnInit, OnDestroy {
-  user!: User;
+  user!: AuthResponse;
   selectedGender = '';
   genders = ['Male', 'Female', 'Other'];
   private userSubscription!: Subscription;
@@ -22,7 +19,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.user = this.userService.user;
     this.userSubscription = this.userService.userChanged.subscribe(
-      (user: User) => {
+      (user: AuthResponse) => {
         this.user = user;
       }
     );
@@ -33,7 +30,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   }
 
   editUserInfo() {
-    const userWithoutToken: UserWithoutToken = {
+    const userWithoutToken: User = {
       id: this.user.data.id,
       email: this.user.data.email,
       password: this.user.data.password,

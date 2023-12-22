@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import {
   AuthService,
   Credentials,
-  User,
+  AuthResponse,
 } from 'src/app/services/auth/auth.service';
 import { UserService } from 'src/app/services/user/user.service';
 
@@ -41,9 +41,9 @@ export class AuthComponent {
   }
 
   register(): void {
-    const user: User = this.signUpForm.value;
+    const user: AuthResponse = this.signUpForm.value;
     this.authService.register(user).subscribe({
-      next: (response: User) => {
+      next: (response: AuthResponse) => {
         this.authService.saveToken(response.token);
         this.userService.user = response;
         console.log(response);

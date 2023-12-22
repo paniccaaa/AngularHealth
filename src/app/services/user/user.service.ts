@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { User } from '../auth/auth.service';
+import { AuthResponse } from '../auth/auth.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Subject } from 'rxjs';
 
-export interface UserWithoutToken {
+export interface User {
   id: number;
   email: string;
   password: string;
@@ -16,8 +16,8 @@ export interface UserWithoutToken {
   providedIn: 'root',
 })
 export class UserService {
-  user!: User;
-  userChanged = new Subject<User>();
+  user!: AuthResponse;
+  userChanged = new Subject<AuthResponse>();
   urlAuthMe = 'https://808ad2a997f895b8.mokky.dev/auth_me';
   urlUsers = 'https://808ad2a997f895b8.mokky.dev/users';
 
@@ -33,7 +33,7 @@ export class UserService {
       Authorization: 'Bearer ' + token,
     });
 
-    this.http.get<User>(this.urlAuthMe, { headers }).subscribe({
+    this.http.get<AuthResponse>(this.urlAuthMe, { headers }).subscribe({
       next: (res) => {
         if (res) {
           console.log(res);
@@ -47,7 +47,7 @@ export class UserService {
     });
   }
 
-  editUser(id: string, user: UserWithoutToken) {
+  editUser(id: string, user: User) {
     return this.http.patch(`${this.urlUsers}/${id}`, user);
   }
 

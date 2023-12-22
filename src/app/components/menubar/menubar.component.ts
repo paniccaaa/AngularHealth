@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { AuthService, User } from 'src/app/services/auth/auth.service';
+import { AuthService, AuthResponse } from 'src/app/services/auth/auth.service';
 import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { UserService } from 'src/app/services/user/user.service';
   styleUrls: ['./menubar.component.scss'],
 })
 export class MenubarComponent implements OnInit, OnDestroy {
-  user!: User;
+  user!: AuthResponse;
   test = true;
   private userSubscription!: Subscription;
 
@@ -23,7 +23,7 @@ export class MenubarComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.user = this.userService.user;
     this.userSubscription = this.userService.userChanged.subscribe(
-      (user: User) => {
+      (user: AuthResponse) => {
         this.user = user;
       }
     );
