@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.categoryService
       .onFilterChange()
-      .pipe(debounceTime(1100))
+      .pipe(debounceTime(600))
       .subscribe(() => {
         this.loadDoctors();
       });
