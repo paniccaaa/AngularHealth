@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {HomeComponent} from "./pages/home/home.component";
-import {UserProfileComponent} from "./pages/user-profile/user-profile.component";
-import {AuthComponent} from "./pages/auth/auth.component";
-import { AppointmentsScheduleComponent } from './pages/appointments-schedule/appointments-schedule.component';
-import { DoctorDetailsComponent } from './pages/doctor-details/doctor-details.component';
-import { UsersReviewsComponent } from './pages/users-reviews/users-reviews.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { AppointmentsComponent } from './pages/appointments/appointments.component';
-import { authGuard } from './guards/auth/auth.guard';
-import { adminGuard } from './guards/admin/admin.guard';
+import { HomeComponent } from './modules/home/pages/home/home.component';
+import { UserProfileComponent } from './modules/user-profile/pages/user-profile/user-profile.component';
+import { AuthComponent } from './modules/auth/pages/auth/auth.component';
+import { AppointmentsScheduleComponent } from './modules/appointments-schedule/pages/appointments-schedule/appointments-schedule.component';
+import { DoctorDetailsComponent } from './modules/home/pages/doctor-details/doctor-details.component';
+import { UsersReviewsComponent } from './modules/home/pages/users-reviews/users-reviews.component';
+import { DashboardComponent } from './modules/dashboard/pages/dashboard/dashboard.component';
+import { AppointmentsComponent } from './modules/appointments/pages/appointments/appointments.component';
+import { authGuard } from './shared/guards/auth/auth.guard';
+import { adminGuard } from './shared/guards/admin/admin.guard';
 
 const routes: Routes = [
   {
