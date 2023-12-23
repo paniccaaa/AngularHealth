@@ -1,12 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Appointment } from 'src/app/modules/appointments/pages/appointments/appointments.component';
+
 import { AppointmentEventService } from 'src/app/shared/services/appointment-event/appointment-event.service';
 import { AppointmentsService } from 'src/app/modules/appointments-schedule/services/appointments/appointments.service';
-import {
-  Doctor,
-  DoctorsService,
-} from 'src/app/modules/home/services/doctors/doctors.service';
+import { DoctorsService } from 'src/app/modules/home/services/doctors/doctors.service';
+import { IAppointment } from 'src/app/shared/interfaces/appointment';
+import { IDoctor } from 'src/app/shared/interfaces/doctor';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-appointment-today',
@@ -15,9 +14,9 @@ import {
 })
 export class AppointmentTodayComponent implements OnInit {
   @Input() eventTime: string = 'Upcoming';
-  @Input() appointment!: Appointment;
+  @Input() appointment!: IAppointment;
   @Input() doctorId!: number;
-  doctor?: Doctor;
+  doctor?: IDoctor;
 
   constructor(
     private doctorsService: DoctorsService,

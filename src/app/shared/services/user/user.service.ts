@@ -1,24 +1,17 @@
-import { Injectable } from '@angular/core';
-import { AuthResponse } from '../../../modules/auth/services/auth/auth.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Subject } from 'rxjs';
 
-export interface User {
-  id: number;
-  email: string;
-  password: string;
-  fullName: string;
-  age: number;
-  gender: string;
-}
+import { IAuthResponse } from '../../interfaces/authResponse';
+import { IUser } from '../../interfaces/user';
+import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  authResp!: AuthResponse;
-  user!: User;
-  userChanged = new Subject<User>();
+  authResp!: IAuthResponse;
+  user!: IUser;
+  userChanged = new Subject<IUser>();
   urlAuthMe = 'https://808ad2a997f895b8.mokky.dev/auth_me';
   urlUsers = 'https://808ad2a997f895b8.mokky.dev/users';
 
@@ -34,7 +27,7 @@ export class UserService {
       Authorization: 'Bearer ' + token,
     });
 
-    this.http.get<User>(this.urlAuthMe, { headers }).subscribe({
+    this.http.get<IUser>(this.urlAuthMe, { headers }).subscribe({
       next: (res) => {
         if (res) {
           console.log(res);
@@ -48,7 +41,7 @@ export class UserService {
     });
   }
 
-  editUser(id: string, user: User) {
+  editUser(id: string, user: IUser) {
     return this.http.patch(`${this.urlUsers}/${id}`, user);
   }
 

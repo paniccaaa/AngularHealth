@@ -1,6 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+
+import { IUser } from 'src/app/shared/interfaces/user';
 import { Subscription } from 'rxjs';
-import { UserService, User } from 'src/app/shared/services/user/user.service';
+import { UserService } from 'src/app/shared/services/user/user.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -8,7 +10,7 @@ import { UserService, User } from 'src/app/shared/services/user/user.service';
   styleUrls: ['./user-profile.component.scss'],
 })
 export class UserProfileComponent implements OnInit, OnDestroy {
-  user!: User;
+  user!: IUser;
   selectedGender = '';
   genders = ['Male', 'Female', 'Other'];
   private userSubscription!: Subscription;
@@ -18,7 +20,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.user = this.userService.user;
     this.userSubscription = this.userService.userChanged.subscribe(
-      (user: User) => {
+      (user: IUser) => {
         this.user = user;
       }
     );
@@ -29,7 +31,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   }
 
   editUserInfo() {
-    const userWithoutToken: User = {
+    const userWithoutToken: IUser = {
       id: this.user.id,
       email: this.user.email,
       password: this.user.password,

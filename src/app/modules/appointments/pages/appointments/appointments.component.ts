@@ -1,16 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { DashboardAppointmentsService } from '../../services/dashboard-appointments/dashboard-appointments.service';
 
-export interface Appointment {
-  id: number;
-  user_id: number;
-  user_name: string;
-  doctor_id: number;
-  doctor_name: string;
-  date: string;
-  time: string;
-  status: string;
-}
+import { DashboardAppointmentsService } from '../../services/dashboard-appointments/dashboard-appointments.service';
+import { IAppointment } from 'src/app/shared/interfaces/appointment';
 
 @Component({
   selector: 'app-appointments',
@@ -27,7 +18,7 @@ export class AppointmentsComponent implements OnInit {
     'status',
   ];
 
-  appointments: Appointment[] = [];
+  appointments: IAppointment[] = [];
 
   constructor(private dashboadAppointments: DashboardAppointmentsService) {}
 

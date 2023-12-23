@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { NavigationExtras, Router } from '@angular/router';
-import { Doctor } from 'src/app/modules/home/services/doctors/doctors.service';
+
+import { IDoctor } from 'src/app/shared/interfaces/doctor';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-doctor-card',
@@ -8,7 +9,7 @@ import { Doctor } from 'src/app/modules/home/services/doctors/doctors.service';
   styleUrls: ['./doctor-card.component.scss'],
 })
 export class DoctorCardComponent {
-  @Input({ required: true }) doctorInfo?: Doctor;
+  @Input({ required: true }) doctorInfo?: IDoctor;
 
   constructor(private router: Router) {}
 

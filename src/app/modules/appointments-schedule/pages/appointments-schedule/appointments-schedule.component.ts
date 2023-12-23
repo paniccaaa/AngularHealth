@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Appointment } from 'src/app/modules/appointments/pages/appointments/appointments.component';
+
 import { AppointmentEventService } from 'src/app/shared/services/appointment-event/appointment-event.service';
 import { AppointmentsService } from 'src/app/modules/appointments-schedule/services/appointments/appointments.service';
+import { IAppointment } from 'src/app/shared/interfaces/appointment';
 
 @Component({
   selector: 'app-appointments-schedule',
@@ -10,9 +11,9 @@ import { AppointmentsService } from 'src/app/modules/appointments-schedule/servi
 })
 export class AppointmentsScheduleComponent implements OnInit {
   statuses = ['upcoming', 'completed', 'canceled'];
-  upcomingApp: Appointment[] = [];
-  completedApp: Appointment[] = [];
-  canceledApp: Appointment[] = [];
+  upcomingApp: IAppointment[] = [];
+  completedApp: IAppointment[] = [];
+  canceledApp: IAppointment[] = [];
 
   constructor(
     private appointmentsService: AppointmentsService,

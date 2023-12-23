@@ -1,25 +1,7 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { IAuthResponse } from 'src/app/shared/interfaces/authResponse';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { UserService } from '../../../../shared/services/user/user.service';
-import { Router } from '@angular/router';
-
-export interface AuthResponse {
-  token: string;
-  data: {
-    id: number;
-    email: string;
-    password: string;
-    fullName: string;
-    age: number;
-    gender: string;
-  };
-}
-
-export interface Credentials {
-  email: string;
-  password: string;
-}
 
 @Injectable({
   providedIn: 'root',
@@ -27,9 +9,9 @@ export interface Credentials {
 export class AuthService {
   private apiUrl = 'https://808ad2a997f895b8.mokky.dev';
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient) {}
 
-  register(user: AuthResponse): Observable<any> {
+  register(user: IAuthResponse): Observable<any> {
     return this.http.post(`${this.apiUrl}/register`, user);
   }
 

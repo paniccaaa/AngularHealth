@@ -1,11 +1,8 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-export interface Category {
-  id: number;
-  title: string;
-}
+import { HttpClient } from '@angular/common/http';
+import { ICategory } from 'src/app/shared/interfaces/category';
+import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +17,7 @@ export class CategoryService {
   constructor(private http: HttpClient) {}
 
   getAllCategories() {
-    return this.http.get<Category[]>(
+    return this.http.get<ICategory[]>(
       `https://808ad2a997f895b8.mokky.dev/specializations`
     );
   }
@@ -29,7 +26,6 @@ export class CategoryService {
     this.filterChangeSubject.next();
   }
 
-  // Observable для отслеживания изменений фильтров
   onFilterChange(): Observable<void> {
     return this.filterChangeSubject.asObservable();
   }

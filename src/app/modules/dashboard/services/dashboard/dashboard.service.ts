@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
+import { IDoctor } from 'src/app/shared/interfaces/doctor';
 import { Injectable } from '@angular/core';
-import { Doctor } from '../../../home/services/doctors/doctors.service';
 
 @Injectable({
   providedIn: 'root',
@@ -10,11 +10,11 @@ export class DashboardService {
 
   constructor(private http: HttpClient) {}
 
-  addDoctor(doctor: Doctor) {
+  addDoctor(doctor: IDoctor) {
     return this.http.post(`${this.baseUrl}`, doctor);
   }
 
-  editDoctor(id: string, doctor: Doctor) {
+  editDoctor(id: string, doctor: IDoctor) {
     return this.http.patch(`${this.baseUrl}/${id}`, doctor);
   }
 

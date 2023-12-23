@@ -1,15 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { MatTabGroup } from '@angular/material/tabs';
-import {
-  Category,
-  CategoryService,
-} from 'src/app/modules/home/services/category/category.service';
+
+import { CategoryService } from 'src/app/modules/home/services/category/category.service';
 import { DashboardService } from 'src/app/modules/dashboard/services/dashboard/dashboard.service';
-import {
-  Doctor,
-  DoctorsService,
-} from 'src/app/modules/home/services/doctors/doctors.service';
+import { DoctorsService } from 'src/app/modules/home/services/doctors/doctors.service';
+import { FormControl } from '@angular/forms';
+import { ICategory } from 'src/app/shared/interfaces/category';
+import { IDoctor } from 'src/app/shared/interfaces/doctor';
+import { MatTabGroup } from '@angular/material/tabs';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,8 +16,8 @@ import {
 export class DashboardComponent implements OnInit {
   @ViewChild(MatTabGroup) tabGroup!: MatTabGroup;
 
-  doctors: Doctor[] = [];
-  selectedDoctor: Doctor = {
+  doctors: IDoctor[] = [];
+  selectedDoctor: IDoctor = {
     id: 1,
     name: 'Wendy Yii',
     universities:
@@ -44,7 +41,7 @@ export class DashboardComponent implements OnInit {
       '7:00 PM',
     ],
   };
-  categories: Category[] = [];
+  categories: ICategory[] = [];
 
   selectedCategory = '';
 

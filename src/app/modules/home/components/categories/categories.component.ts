@@ -1,11 +1,8 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { Sort } from '@angular/material/sort';
-import { CategoryService } from 'src/app/modules/home/services/category/category.service';
+import { Component, OnInit } from '@angular/core';
 
-export interface Category {
-  id: number;
-  title: string;
-}
+import { CategoryService } from 'src/app/modules/home/services/category/category.service';
+import { ICategory } from 'src/app/shared/interfaces/category';
+import { Sort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-categories',
@@ -14,7 +11,7 @@ export interface Category {
 })
 export class CategoriesComponent implements OnInit {
   private _selectedCategoryIndex: number = 0;
-  categories: Category[] = [];
+  categories: ICategory[] = [];
   selectedCategoryValue?: string = '';
 
   sortState = { direction: '', active: '' };
@@ -42,7 +39,6 @@ export class CategoriesComponent implements OnInit {
 
     this.sortState.direction = sort.direction;
     this.sortState.active = sort.active;
-    console.log('ЭТО КОМПОНЕНТ КАТЕГОРИЙ SORT STATE:', this.sortState);
     this.categoryService.setSelectedParams(
       this.sortState,
       this.selectedCategoryValue,

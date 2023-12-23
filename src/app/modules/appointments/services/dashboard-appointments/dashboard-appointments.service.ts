@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
+import { IAppointment } from 'src/app/shared/interfaces/appointment';
 import { Injectable } from '@angular/core';
-import { UserService } from 'src/app/shared/services/user/user.service';
-import { Appointment } from '../../pages/appointments/appointments.component';
 
 @Injectable({
   providedIn: 'root',
@@ -9,9 +8,9 @@ import { Appointment } from '../../pages/appointments/appointments.component';
 export class DashboardAppointmentsService {
   private baseUrl = `https://808ad2a997f895b8.mokky.dev/appointments`;
 
-  constructor(private http: HttpClient, private userService: UserService) {}
+  constructor(private http: HttpClient) {}
 
   getAllAppointments() {
-    return this.http.get<Appointment[]>(this.baseUrl);
+    return this.http.get<IAppointment[]>(this.baseUrl);
   }
 }

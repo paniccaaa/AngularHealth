@@ -1,12 +1,10 @@
-import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+import { AuthService } from 'src/app/modules/auth/services/auth/auth.service';
+import { Component } from '@angular/core';
+import { IAuthResponse } from 'src/app/shared/interfaces/authResponse';
+import { ICredentials } from 'src/app/shared/interfaces/credentials';
 import { Router } from '@angular/router';
-import {
-  AuthService,
-  Credentials,
-  AuthResponse,
-} from 'src/app/modules/auth/services/auth/auth.service';
-import { UserService } from 'src/app/shared/services/user/user.service';
 
 @Component({
   selector: 'app-auth',
@@ -22,7 +20,6 @@ export class AuthComponent {
 
   constructor(
     private authService: AuthService,
-    private userService: UserService,
     private router: Router,
     private fb: FormBuilder
   ) {
@@ -41,9 +38,9 @@ export class AuthComponent {
   }
 
   register(): void {
-    const user: AuthResponse = this.signUpForm.value;
+    const user: IAuthResponse = this.signUpForm.value;
     this.authService.register(user).subscribe({
-      next: (response: AuthResponse) => {
+      next: (response: IAuthResponse) => {
         this.authService.saveToken(response.token);
         this.router.navigate(['']);
       },
@@ -54,13 +51,13 @@ export class AuthComponent {
   }
 
   login(): void {
-    const credentials: Credentials = {
+    const credentials: ICredentials = {
       email: this.signInForm.value.email,
       password: this.signInForm.value.password,
     };
 
     this.authService.login(credentials).subscribe({
-      next: (response: AuthResponse) => {
+      next: (response: IAuthResponse) => {
         this.authService.saveToken(response.token);
         this.router.navigate(['']);
       },

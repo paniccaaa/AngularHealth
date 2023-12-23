@@ -1,17 +1,6 @@
 import { HttpClient } from '@angular/common/http';
+import { IDoctor } from 'src/app/shared/interfaces/doctor';
 import { Injectable } from '@angular/core';
-
-export interface Doctor {
-  id: number;
-  name: string;
-  universities: string;
-  patients: number;
-  experience: number;
-  avatar: string;
-  description: string;
-  speciality: string;
-  timingsList: string[];
-}
 
 @Injectable({
   providedIn: 'root',
@@ -22,11 +11,11 @@ export class DoctorsService {
   constructor(private http: HttpClient) {}
 
   getAllDoctors() {
-    return this.http.get<Doctor[]>(this.baseUrl);
+    return this.http.get<IDoctor[]>(this.baseUrl);
   }
 
   getDoctorById(id: string) {
-    return this.http.get<Doctor>(`${this.baseUrl}/${id}`);
+    return this.http.get<IDoctor>(`${this.baseUrl}/${id}`);
   }
 
   getDoctorsByFilter(
@@ -50,6 +39,6 @@ export class DoctorsService {
 
     const url = `${this.baseUrl}?${queryParams}`;
 
-    return this.http.get<Doctor[]>(url);
+    return this.http.get<IDoctor[]>(url);
   }
 }

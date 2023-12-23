@@ -1,11 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+
+import { IUser } from '../../interfaces/user';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import {
-  AuthService,
-  AuthResponse,
-} from 'src/app/modules/auth/services/auth/auth.service';
-import { User, UserService } from 'src/app/shared/services/user/user.service';
+import { UserService } from 'src/app/shared/services/user/user.service';
 
 @Component({
   selector: 'app-menubar',
@@ -13,7 +11,7 @@ import { User, UserService } from 'src/app/shared/services/user/user.service';
   styleUrls: ['./menubar.component.scss'],
 })
 export class MenubarComponent implements OnInit, OnDestroy {
-  user!: User;
+  user!: IUser;
   isOpened = false;
   private userSubscription!: Subscription;
 
@@ -22,7 +20,7 @@ export class MenubarComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.user = this.userService.user;
     this.userSubscription = this.userService.userChanged.subscribe(
-      (user: User) => {
+      (user: IUser) => {
         this.user = user;
       }
     );

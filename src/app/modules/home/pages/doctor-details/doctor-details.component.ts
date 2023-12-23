@@ -1,25 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDatepickerInputEvent } from '@angular/material/datepicker';
-import { formatDate } from '@angular/common';
-import { FormControl } from '@angular/forms';
-import { map, Observable, startWith } from 'rxjs';
-import {
-  Doctor,
-  DoctorsService,
-} from 'src/app/modules/home/services/doctors/doctors.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserService } from 'src/app/shared/services/user/user.service';
-import { AppointmentsService } from 'src/app/modules/appointments-schedule/services/appointments/appointments.service';
+import { Component, OnInit } from '@angular/core';
+import { Observable, map, startWith } from 'rxjs';
 
-export interface AppointmentWithoutId {
-  user_id: number;
-  user_name: string;
-  doctor_id: number;
-  doctor_name: string;
-  date: string;
-  time: string;
-  status: string;
-}
+import { AppointmentsService } from 'src/app/modules/appointments-schedule/services/appointments/appointments.service';
+import { DoctorsService } from 'src/app/modules/home/services/doctors/doctors.service';
+import { FormControl } from '@angular/forms';
+import { IAppointmentWithoutId } from 'src/app/shared/interfaces/appointment';
+import { IDoctor } from 'src/app/shared/interfaces/doctor';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { UserService } from 'src/app/shared/services/user/user.service';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-doctor-details',
@@ -27,7 +17,7 @@ export interface AppointmentWithoutId {
   styleUrls: ['./doctor-details.component.scss'],
 })
 export class DoctorDetailsComponent implements OnInit {
-  doctor?: Doctor;
+  doctor?: IDoctor;
   selected: Date | string | null = '';
   formattedDate: string = '';
   selectedTime: string = '';
@@ -82,7 +72,7 @@ export class DoctorDetailsComponent implements OnInit {
   }
 
   bookAppointment() {
-    const appointment: AppointmentWithoutId = {
+    const appointment: IAppointmentWithoutId = {
       user_id: this.userService.user.id,
       user_name: this.userService.user.fullName,
       doctor_id: this.doctor?.id || -1,

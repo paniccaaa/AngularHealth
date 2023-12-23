@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { debounceTime } from 'rxjs';
+
 import { CategoryService } from 'src/app/modules/home/services/category/category.service';
-import {
-  Doctor,
-  DoctorsService,
-} from 'src/app/modules/home/services/doctors/doctors.service';
+import { DoctorsService } from 'src/app/modules/home/services/doctors/doctors.service';
+import { IDoctor } from 'src/app/shared/interfaces/doctor';
 import { UserService } from 'src/app/shared/services/user/user.service';
+import { debounceTime } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +12,7 @@ import { UserService } from 'src/app/shared/services/user/user.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  doctors: Doctor[] = [];
+  doctors: IDoctor[] = [];
 
   constructor(
     private doctorsService: DoctorsService,
