@@ -58,6 +58,11 @@ export class CategoriesComponent implements OnInit {
     this.categoryService.notifyFilterChange();
   }
 
+  onDoctorInputClear() {
+    this.doctorValue = '';
+    this.onDoctorInputChanged();
+  }
+
   get selectedCategoryIndex(): number {
     return this._selectedCategoryIndex;
   }

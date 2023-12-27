@@ -10,7 +10,7 @@
         placeholder="Dr. Dre"
         [(ngModel)]="doctorValue"
         (ngModelChange)="onDoctorInputChanged()">
-      <button matSuffix mat-icon-button aria-label="Clear" *ngIf="doctorValue" (click)="doctorValue=''">
+      <button matSuffix mat-icon-button aria-label="Clear" *ngIf="doctorValue" (click)="onDoctorInputClear()">
         <mat-icon>close</mat-icon>
       </button>
     </mat-form-field>
