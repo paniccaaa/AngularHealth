@@ -1,50 +1,51 @@
 import { RouterModule, Routes } from '@angular/router';
 
-import { AppointmentsComponent } from './modules/appointments/pages/appointments/appointments.component';
-import { AppointmentsScheduleComponent } from './modules/appointments-schedule/pages/appointments-schedule/appointments-schedule.component';
-import { AuthComponent } from './modules/auth/pages/auth/auth.component';
-import { DashboardComponent } from './modules/dashboard/pages/dashboard/dashboard.component';
-import { DoctorDetailsComponent } from './modules/home/pages/doctor-details/doctor-details.component';
-import { HomeComponent } from './modules/home/pages/home/home.component';
 import { NgModule } from '@angular/core';
-import { UserProfileComponent } from './modules/user-profile/pages/user-profile/user-profile.component';
-import { UsersReviewsComponent } from './modules/home/pages/users-reviews/users-reviews.component';
 import { adminGuard } from './shared/guards/admin/admin.guard';
 import { authGuard } from './shared/guards/auth/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent,
+    loadChildren: () =>
+      import('./modules/home/home.module').then((m) => m.HomeModule),
   },
   {
     path: 'profile',
     canActivate: [authGuard],
-    component: UserProfileComponent,
+    loadChildren: () =>
+      import('./modules/user-profile/user-profile.module').then(
+        (m) => m.UserProfileModule
+      ),
   },
-  { path: 'auth', component: AuthComponent },
+  {
+    path: 'auth',
+    loadChildren: () =>
+      import('./modules/auth/auth.module').then((m) => m.AuthModule),
+  },
   {
     path: 'appointments-schedule',
     canActivate: [authGuard],
-    component: AppointmentsScheduleComponent,
-  },
-  {
-    path: 'doctor/:id',
-    component: DoctorDetailsComponent,
-  },
-  {
-    path: 'doctor/id/rewievs',
-    component: UsersReviewsComponent,
+    loadChildren: () =>
+      import(
+        './modules/appointments-schedule/appointments-schedule.module'
+      ).then((m) => m.AppointmentsScheduleModule),
   },
   {
     path: 'dashboard',
     canActivate: [authGuard, adminGuard],
-    component: DashboardComponent,
+    loadChildren: () =>
+      import('./modules/dashboard/dashboard.module').then(
+        (m) => m.DashboardModule
+      ),
   },
   {
     path: 'appointments',
     canActivate: [authGuard, adminGuard],
-    component: AppointmentsComponent,
+    loadChildren: () =>
+      import('./modules/appointments/appointments.module').then(
+        (m) => m.AppointmentsModule
+      ),
   },
 ];
 
