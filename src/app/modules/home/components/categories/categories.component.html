@@ -17,7 +17,6 @@
   </div>
 
   <div matSort (matSortChange)="setSortState($event)" style="flex-direction: row; display: flex; justify-content: center">
-    <!-- <button mat-button><div mat-sort-header="rating"><mat-icon>star</mat-icon>Rating</div></button> -->
     <button mat-button>
       <div mat-sort-header="patients"><mat-icon>people</mat-icon>Patients</div>
     </button>
@@ -32,10 +31,5 @@
      [label]="category.title">
     </mat-tab>
   </mat-tab-group>
-
-  <!-- {{selectedCategoryIndex}}
-  {{doctorValue}}
-  {{sortState.active}}
-  {{sortState.direction}}
-  {{selectedCategoryValue}} -->
+  
 </div>

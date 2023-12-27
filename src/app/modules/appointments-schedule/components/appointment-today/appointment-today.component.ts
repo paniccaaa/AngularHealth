@@ -5,7 +5,6 @@ import { AppointmentsService } from 'src/app/modules/appointments-schedule/servi
 import { DoctorsService } from 'src/app/modules/home/services/doctors/doctors.service';
 import { IAppointment } from 'src/app/shared/interfaces/appointment';
 import { IDoctor } from 'src/app/shared/interfaces/doctor';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-appointment-today',
@@ -21,7 +20,6 @@ export class AppointmentTodayComponent implements OnInit {
   constructor(
     private doctorsService: DoctorsService,
     private appointmentsService: AppointmentsService,
-    private router: Router,
     private appointmentEventService: AppointmentEventService
   ) {}
 

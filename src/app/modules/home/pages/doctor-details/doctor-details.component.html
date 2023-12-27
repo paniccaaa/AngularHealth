@@ -6,7 +6,8 @@
         <mat-card-header style="justify-content: left">
           <img mat-card-avatar alt="Photo of a Doctor" [src]="doctor?.avatar">
           <mat-card-title>{{doctor?.name}} ({{doctor?.speciality}})</mat-card-title>
-          <mat-card-subtitle>Patients - {{doctor?.patients}}, Experience - {{doctor?.experience}} years</mat-card-subtitle>
+          <mat-card-subtitle>Experience - {{doctor?.experience}} years</mat-card-subtitle> 
+          <!-- up u can add patients/rating and logic for this -->
         </mat-card-header>
 
         <mat-card-content>

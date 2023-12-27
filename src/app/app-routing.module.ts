@@ -1,6 +1,7 @@
 import { RouterModule, Routes } from '@angular/router';
 
 import { NgModule } from '@angular/core';
+import { PageNotFoundComponent } from './shared/pages/page-not-found/page-not-found.component';
 import { adminGuard } from './shared/guards/admin/admin.guard';
 import { authGuard } from './shared/guards/auth/auth.guard';
 
@@ -46,6 +47,11 @@ const routes: Routes = [
       import('./modules/appointments/appointments.module').then(
         (m) => m.AppointmentsModule
       ),
+  },
+  {
+    path: '**',
+    pathMatch: 'full',
+    component: PageNotFoundComponent,
   },
 ];
 

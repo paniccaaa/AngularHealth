@@ -3,12 +3,6 @@
   padding: 4px;
   justify-content: center;
 }
-//
-//.doctor-card-container {
-//  display: flex;
-//  justify-content: center;
-//  flex-wrap: wrap;
-//}
 
 .doctor-card-container {
   display: grid;
@@ -16,6 +10,7 @@
   grid-gap: 10px;
 
 }
+
 .doctor-card-column {
   flex-basis: 25%;
   padding: 10px;
@@ -25,12 +20,4 @@
   @media screen and (max-width: 633px) {
     flex-basis: 100%;
   }
-
 }
-
-//.doctor-card-container {
-//  column-count: 3;
-//  @media screen and (max-width: 1044px) {
-//    column-count: 2;
-//  }
-//}
