@@ -22,12 +22,6 @@ import { UserService } from './shared/services/user/user.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AppointmentsModule,
-    AppointmentsScheduleModule,
-    AuthModule,
-    DashboardModule,
-    HomeModule,
-    UserProfileModule,
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
