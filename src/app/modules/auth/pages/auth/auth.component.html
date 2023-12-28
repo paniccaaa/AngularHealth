@@ -4,73 +4,97 @@
   <mat-tab-group mat-align-tabs="start">
 
     <mat-tab label="Sign In">
-      <form [formGroup]="signInForm">
+      <form [formGroup]="signInForm" (ngSubmit)="login()">
         <div class="sign-container">      
           <mat-form-field>
             <mat-label>Email</mat-label>
             <input matInput formControlName="email"> 
+            <mat-error *ngIf="signInForm.get('email')?.hasError('required')">Email is required</mat-error>
+            <mat-error *ngIf="signInForm.get('email')?.hasError('email')">Invalid email format</mat-error>
           </mat-form-field>
-  
+
           <mat-form-field>
             <mat-label>Password</mat-label>
             <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
-            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <button mat-icon-button
+              matSuffix 
+              (click)="hide = !hide" 
+              [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
+            <mat-error *ngIf="signInForm.get('password')?.hasError('required')">Password is required</mat-error>
+            <mat-error *ngIf="signInForm.get('password')?.hasError('minlength')">
+              Password should be at least 6 characters</mat-error>
           </mat-form-field>
+
+          <button mat-raised-button color="primary" type="submit" [disabled]="signInForm.invalid">Sign In</button>
         </div>
-        
-        <button (click)="login()" mat-raised-button color="primary">Sign In</button>
       </form>
     </mat-tab>
-    
-    <mat-tab label="Sign Up">
-      <form [formGroup]="signUpForm">
-        <div class="sign-container">    
 
+    <mat-tab label="Sign Up">
+      <form [formGroup]="signUpForm" (ngSubmit)="register()">
+        <div class="sign-container">    
           <mat-form-field>
             <mat-label>Full name</mat-label>
             <input matInput formControlName="fullName"> 
+            <mat-error *ngIf="signUpForm.get('fullName')?.hasError('required')">Full name is required</mat-error>
           </mat-form-field>
 
           <mat-form-field>
             <mat-label>Email</mat-label>
             <input matInput formControlName="email"> 
+            <mat-error *ngIf="signUpForm.get('email')?.hasError('required')">Email is required</mat-error>
+            <mat-error *ngIf="signUpForm.get('email')?.hasError('email')">Invalid email format</mat-error>
           </mat-form-field>
 
           <mat-form-field>
             <mat-label>Age</mat-label>
             <input matInput formControlName="age"> 
+            <mat-error *ngIf="signUpForm.get('age')?.hasError('required')">Age is required</mat-error>
           </mat-form-field>
 
           <mat-form-field>
             <mat-label>Gender</mat-label>
             <mat-select formControlName="gender" name="food">
-              @for (gender of genders; track gender) {
-                <mat-option [value]="gender">{{gender}}</mat-option>
-              }
+              <mat-option *ngFor="let gender of genders" [value]="gender">{{gender}}</mat-option>
             </mat-select>
+            <mat-error *ngIf="signUpForm.get('gender')?.hasError('required')">Gender is required</mat-error>
           </mat-form-field>
 
           <mat-form-field>
             <mat-label>Enter your password</mat-label>
             <input formControlName="password" matInput [type]="hide ? 'password' : 'text'">
-            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <button 
+              mat-icon-button
+              matSuffix 
+              (click)="hide = !hide" 
+              [attr.aria-label]="'Hide password'" 
+              [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
+            <mat-error *ngIf="signUpForm.get('password')?.hasError('required')">Password is required</mat-error>
+            <mat-error *ngIf="signUpForm.get('password')?.hasError('minlength')">
+              Password should be at least 6 characters
+            </mat-error>
           </mat-form-field>
 
           <mat-form-field>
             <mat-label>Repeat your password</mat-label>
-            <input formControlName="password" matInput [type]="hide ? 'password' : 'text'">
+            <input formControlName="confirmPassword" matInput [type]="hide ? 'password' : 'text'">
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
+            <mat-error *ngIf="signUpForm.get('confirmPassword')?.hasError('required')">Confirmation password is required</mat-error>
+            <mat-error *ngIf="signUpForm.hasError('passwordMismatch')">Passwords do not match</mat-error>
           </mat-form-field>
+
+          <button mat-raised-button color="primary" type="submit" [disabled]="signUpForm.invalid">Sign Up</button>
         </div>
-        <button (click)="register()" mat-raised-button color="primary">Sign Up</button>
-    </form>
+      </form>
     </mat-tab>
+
   </mat-tab-group>
 
 </div>

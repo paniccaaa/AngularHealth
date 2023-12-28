@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { IAuthResponse } from 'src/app/shared/interfaces/authResponse';
+import { ICredentials } from 'src/app/shared/interfaces/credentials';
+import { ISignUpForm } from 'src/app/shared/interfaces/signUpForm';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -11,15 +12,15 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  register(user: IAuthResponse): Observable<any> {
+  register(user: ISignUpForm): Observable<any> {
     return this.http.post(`${this.apiUrl}/register`, user);
   }
 
-  login(credentials: any): Observable<any> {
+  login(credentials: ICredentials): Observable<any> {
     return this.http.post(`${this.apiUrl}/auth`, credentials);
   }
 
-  saveToken(token: string): void {
+  saveToken(token: string) {
     localStorage.setItem('token', token);
   }
 }

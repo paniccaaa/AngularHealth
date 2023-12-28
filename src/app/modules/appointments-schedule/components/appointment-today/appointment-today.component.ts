@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Subject, takeUntil } from 'rxjs';
 
 import { AppointmentEventService } from 'src/app/shared/services/appointment-event/appointment-event.service';
 import { AppointmentsService } from 'src/app/modules/appointments-schedule/services/appointments/appointments.service';
@@ -11,10 +12,11 @@ import { IDoctor } from 'src/app/shared/interfaces/doctor';
   templateUrl: './appointment-today.component.html',
   styleUrls: ['./appointment-today.component.scss'],
 })
-export class AppointmentTodayComponent implements OnInit {
+export class AppointmentTodayComponent implements OnInit, OnDestroy {
   @Input() eventTime: string = 'Upcoming';
   @Input() appointment!: IAppointment;
   @Input() doctorId!: number;
+  private unsubscribe$ = new Subject<void>();
   doctor?: IDoctor;
 
   constructor(
@@ -27,12 +29,20 @@ export class AppointmentTodayComponent implements OnInit {
     this.loadDoctor();
   }
 
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
+  }
+
   loadDoctor() {
-    this.doctorsService.getDoctorById(this.doctorId.toString()).subscribe({
-      next: (res) => (this.doctor = res),
-      error: (err) =>
-        console.log('при получении доктора произошла ошибка: ', err),
-    });
+    this.doctorsService
+      .getDoctorById(this.doctorId.toString())
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe({
+        next: (res) => (this.doctor = res),
+        error: (err) =>
+          console.log('при получении доктора произошла ошибка: ', err),
+      });
   }
 
   cancelAppointment() {

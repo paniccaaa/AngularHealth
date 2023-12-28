@@ -5,11 +5,11 @@ import { Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class AppointmentEventService {
-  private appointmentEventSource = new Subject<void>();
+  private appointmentEventSource$ = new Subject<void>();
 
-  appointmentEvent$ = this.appointmentEventSource.asObservable();
+  appointmentEvent$ = this.appointmentEventSource$.asObservable();
 
   triggerAppointmentEvent() {
-    this.appointmentEventSource.next();
+    this.appointmentEventSource$.next();
   }
 }

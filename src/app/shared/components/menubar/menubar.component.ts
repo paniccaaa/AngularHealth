@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subject, takeUntil } from 'rxjs';
 
 import { IUser } from '../../interfaces/user';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
 import { UserService } from 'src/app/shared/services/user/user.service';
 
 @Component({
@@ -13,21 +13,22 @@ import { UserService } from 'src/app/shared/services/user/user.service';
 export class MenubarComponent implements OnInit, OnDestroy {
   user!: IUser;
   isOpened = false;
-  private userSubscription!: Subscription;
+  private unsubscribe$ = new Subject<void>();
 
   constructor(private userService: UserService, private router: Router) {}
 
   ngOnInit() {
     this.user = this.userService.user;
-    this.userSubscription = this.userService.userChanged.subscribe(
-      (user: IUser) => {
+    this.userService.userChanged
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((user: IUser) => {
         this.user = user;
-      }
-    );
+      });
   }
 
   ngOnDestroy() {
-    this.userSubscription.unsubscribe();
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 
   logoutHandler() {

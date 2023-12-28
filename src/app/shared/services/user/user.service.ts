@@ -20,6 +20,7 @@ export class UserService {
   checkAuthorization(token: string | null) {
     if (!token) {
       console.error('Токен отсутствует');
+      this.clearUser();
       return;
     }
 

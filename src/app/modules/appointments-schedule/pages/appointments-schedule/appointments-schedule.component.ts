@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subject, takeUntil } from 'rxjs';
 
 import { AppointmentEventService } from 'src/app/shared/services/appointment-event/appointment-event.service';
 import { AppointmentsService } from 'src/app/modules/appointments-schedule/services/appointments/appointments.service';
@@ -9,11 +10,12 @@ import { IAppointment } from 'src/app/shared/interfaces/appointment';
   templateUrl: './appointments-schedule.component.html',
   styleUrls: ['./appointments-schedule.component.scss'],
 })
-export class AppointmentsScheduleComponent implements OnInit {
+export class AppointmentsScheduleComponent implements OnInit, OnDestroy {
   statuses = ['upcoming', 'completed', 'canceled'];
   upcomingApp: IAppointment[] = [];
   completedApp: IAppointment[] = [];
   canceledApp: IAppointment[] = [];
+  private unsubscribe$ = new Subject<void>();
 
   constructor(
     private appointmentsService: AppointmentsService,
@@ -23,9 +25,16 @@ export class AppointmentsScheduleComponent implements OnInit {
   ngOnInit() {
     this.loadAppointments();
 
-    this.appointmentEventService.appointmentEvent$.subscribe(() => {
-      this.loadAppointments();
-    });
+    this.appointmentEventService.appointmentEvent$
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(() => {
+        this.loadAppointments();
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 
   loadAppointments() {
