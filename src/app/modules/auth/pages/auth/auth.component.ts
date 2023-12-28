@@ -10,7 +10,6 @@ import { Component } from '@angular/core';
 import { IAuthResponse } from 'src/app/shared/interfaces/authResponse';
 import { ICredentials } from 'src/app/shared/interfaces/credentials';
 import { ISignUpForm } from 'src/app/shared/interfaces/signUpForm';
-import { IUser } from 'src/app/shared/interfaces/user';
 import { Router } from '@angular/router';
 
 @Component({
