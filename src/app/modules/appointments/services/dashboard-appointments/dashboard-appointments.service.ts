@@ -1,13 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { IAppointment } from 'src/app/shared/interfaces/appointment';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DashboardAppointmentsService {
-  private baseUrl = `${environment.apiUrl}/appointments`;
+  private baseUrl = `https://808ad2a997f895b8.mokky.dev/appointments`;
 
   constructor(private http: HttpClient) {}
 

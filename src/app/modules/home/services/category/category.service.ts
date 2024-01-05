@@ -18,7 +18,9 @@ export class CategoryService {
   constructor(private http: HttpClient) {}
 
   getAllCategories() {
-    return this.http.get<ICategory[]>(`${environment.apiUrl}/specializations`);
+    return this.http.get<ICategory[]>(
+      `https://808ad2a997f895b8.mokky.dev/specializations`
+    );
   }
 
   notifyFilterChange() {

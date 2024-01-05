@@ -4,7 +4,6 @@ import { IAuthResponse } from '../../interfaces/authResponse';
 import { IUser } from '../../interfaces/user';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -13,8 +12,8 @@ export class UserService {
   authResp!: IAuthResponse;
   user!: IUser;
   userChanged = new Subject<IUser>();
-  urlAuthMe = `${environment.apiUrl}/auth_me`;
-  urlUsers = `${environment.apiUrl}/users`;
+  urlAuthMe = `https://808ad2a997f895b8.mokky.dev/auth_me`;
+  urlUsers = `https://808ad2a997f895b8.mokky.dev/users`;
 
   constructor(private http: HttpClient) {}
 
