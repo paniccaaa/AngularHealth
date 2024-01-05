@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ICategory } from 'src/app/shared/interfaces/category';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -17,9 +18,7 @@ export class CategoryService {
   constructor(private http: HttpClient) {}
 
   getAllCategories() {
-    return this.http.get<ICategory[]>(
-      `https://808ad2a997f895b8.mokky.dev/specializations`
-    );
+    return this.http.get<ICategory[]>(`${environment.apiUrl}/specializations`);
   }
 
   notifyFilterChange() {

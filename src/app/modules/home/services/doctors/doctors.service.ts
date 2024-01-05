@@ -1,13 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { IDoctor } from 'src/app/shared/interfaces/doctor';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DoctorsService {
-  private baseUrl = `https://808ad2a997f895b8.mokky.dev/doctors`;
-
+  private baseUrl = `${environment.apiUrl}/doctors`;
   constructor(private http: HttpClient) {}
 
   getAllDoctors() {

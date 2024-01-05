@@ -32,8 +32,4 @@ export class AppointmentsComponent implements OnInit {
       error: (e) => console.log('При получении встреч произошла ошибка:', e),
     });
   }
-
-  onClick(id: any) {
-    alert(this.appointments[id - 1].user_name);
-  }
 }
