@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class DoctorsService {
-  private baseUrl = `https://808ad2a997f895b8.mokky.dev/doctors`;
+  private baseUrl = `${environment.apiUrl}/doctors`;
   constructor(private http: HttpClient) {}
 
   getAllDoctors() {

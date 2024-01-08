@@ -6,12 +6,13 @@ import {
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UserService } from '../../../../shared/services/user/user.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AppointmentsService {
-  private baseUrl = `https://808ad2a997f895b8.mokky.dev/appointments`;
+  private baseUrl = `${environment.apiUrl}/appointments`;
 
   constructor(private http: HttpClient, private userService: UserService) {}
 
