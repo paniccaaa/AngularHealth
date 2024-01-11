@@ -23,7 +23,7 @@ Users can create, cancel, and complete appointments with doctors using this appl
 
 ## My Stack
 
-- **Angular 17**
+- **Angular 16**
   
 - **Angular Material** / **SCSS**
   
