@@ -7,5 +7,5 @@ export interface IDoctor {
   avatar: string;
   description: string;
   speciality: string;
-  timingsList: string[];
+  timingsList: string[]; 
 }

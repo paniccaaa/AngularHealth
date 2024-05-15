@@ -13,9 +13,10 @@ export class UserService {
   authResp!: IAuthResponse;
   user!: IUser;
   userChanged = new Subject<IUser>();
-  urlAuthMe = `${environment.apiUrl}/auth_me`;
+  //urlAuthMe = `${environment.apiUrl}/auth_me`;
   urlUsers = `${environment.apiUrl}/users`;
-
+  urlAuthMe = `${`https://808ad2a997f895b8.mokky.dev`}/auth_me`
+  //urlUsers = `${`https://808ad2a997f895b8.mokky.dev`}/users`
   constructor(private http: HttpClient) {}
 
   checkAuthorization(token: string | null) {
